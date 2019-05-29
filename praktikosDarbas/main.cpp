@@ -3,8 +3,14 @@
 #include <ctime>
 #include <fstream>
 #include <windows.h>
+#include <conio.h>
 
 using namespace std;
+
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
 
 const int zemPlotis = 120;
 const int zemAukstis = 30;
@@ -73,9 +79,9 @@ int main() {
     bool procVeikia = true;
     int pagrMenu = -1;
     cout << "\n0 - BAIGTI ZAIDIMA;\n" 
-            "1 - PRADETI NAUJA ZAIDIMA;";
+            "1 - PRADETI NAUJA ZAIDIMA;\n";
     while (procVeikia == true) {
-        cout << "\n\nPASIRINKITE MENU PUNKTA: ";
+        cout << "\nPASIRINKITE MENU PUNKTA: ";
         cin >> pagrMenu;
         switch(pagrMenu) {
             case 0: {
@@ -96,9 +102,9 @@ int main() {
                 bool zaidVeikia = true;
                 int zaidMenu = -1;
                 cout << "\n\n0 - ATGAL I MENU;\n"
-                        "1 - JUDETI;";
+                        "1 - JUDETI (RODYKLEMIS);\n";
                 while (zaidVeikia == true) {
-                    cout << "\n\nPASIRINKITE VEIKSMA: ";
+                    cout << "\nPASIRINKITE VEIKSMA: ";
                     cin >> zaidMenu;
                     switch(zaidMenu) {
                         case 0: {
@@ -106,28 +112,80 @@ int main() {
                             break;
                         }
                         case 1: {
-                            int kryptis, temp;
-                            cout << "1  2  3\n" //TODO: kalnai "^", vanduo "~" ir t.t.
-                                    " * * * \n" //TODO: parodyti supancia terrain tiksliai, ar vanduo, ar kalnas...
-                                    "4* Z *5\n"
-                                    " * * * \n"
-                                    "6(-1,-1)  7  8\n\n"
-                                    "PASIRINKITE NORIMA KRYPTI (SKAICIUMI): ";
-                            cin >> kryptis;
-                            if (kryptis == 1) {
-                                temp = zemelapis[yZaid][xZaid];
-                                zemelapis[yZaid][xZaid] = zemelapis[yZaid + 1][xZaid + 1];
-                                zemelapis[yZaid + 1][xZaid - 1] = temp;
+                            bool zaidVaiksto = true, pirmEjimas = true;
+                            char temp, temp1 = '.';
+                            int bind;
+                            while(zaidVaiksto == true) {
+                                switch((bind = getch())) {
+                                    case VK_ESCAPE: {
+                                        zaidVaiksto = false;
+                                        break;
+                                    }
+                                    case KEY_UP: {
+                                        if (yZaid > 0) {
+                                            temp = zemelapis[yZaid - 1][xZaid];
+                                            zemelapis[yZaid - 1][xZaid] = zemelapis[yZaid][xZaid]; 
+                                            zemelapis[yZaid][xZaid] = temp1;
+                                            temp1 = temp;
+                                            yZaid = yZaid - 1;
+                                            if (yZaid > 2) zaidejoMatomumas(xZaid, yZaid);
+                                            vaizduotiZemelapi();
+                                            cout << "\n";
+                                            Sleep(50);
+                                        }
+                                        else cout << "PASIEKETE RIBA!\n";
+                                        break;
+                                    }
+                                    case KEY_DOWN: {
+                                        if (yZaid < 29) {
+                                            temp = zemelapis[yZaid + 1][xZaid];
+                                            zemelapis[yZaid + 1][xZaid] = zemelapis[yZaid][xZaid]; 
+                                            zemelapis[yZaid][xZaid] = temp1;
+                                            temp1 = temp;
+                                            yZaid = yZaid + 1;
+                                            if (yZaid < 27) zaidejoMatomumas(xZaid, yZaid);
+                                            vaizduotiZemelapi();
+                                            cout << "\n";
+                                            Sleep(50);
+                                        }
+                                        else cout << "\nPASIEKETE RIBA!\n";
+                                        break;
+                                    }
+                                    case KEY_LEFT: {
+                                        if (xZaid > 0) {
+                                            temp = zemelapis[yZaid][xZaid - 1];
+                                            zemelapis[yZaid][xZaid - 1] = zemelapis[yZaid][xZaid];
+                                            zemelapis[yZaid][xZaid] = temp1;
+                                            temp1 = temp;
+                                            xZaid = xZaid - 1;
+                                            if (xZaid > 2) zaidejoMatomumas(xZaid, yZaid);
+                                            vaizduotiZemelapi();
+                                            cout << "\n";
+                                            Sleep(50);
+                                        }
+                                        else cout << "\nPASIEKETE RIBA!\n";
+                                        break;
+                                    }
+                                    case KEY_RIGHT: {
+                                        if (xZaid < 119) {
+                                            temp = zemelapis[yZaid][xZaid + 1];
+                                            zemelapis[yZaid][xZaid + 1] = zemelapis[yZaid][xZaid]; 
+                                            zemelapis[yZaid][xZaid] = temp1;
+                                            temp1 = temp;
+                                            xZaid = xZaid + 1;
+                                            if (xZaid < 117) zaidejoMatomumas(xZaid, yZaid);
+                                            vaizduotiZemelapi();
+                                            cout << "\n";
+                                            Sleep(50);
+                                        }
+                                        else cout << "\nPASIEKETE RIBA!\n";
+                                        break;
+                                    }
+                                    default: {
+                                        
+                                    }
+                                }
                             }
-                            /*if (kryptis == 2)
-                            if (kryptis == 3)
-                            if (kryptis == 4)
-                            if (kryptis == 5)
-                            if (kryptis == 6)
-                            if (kryptis == 7)
-                            if (kryptis == 8)*/
-                            vaizduotiZemelapi();
-                            //zaidejoMatomumas();
                             break;
                         }
                         default: {

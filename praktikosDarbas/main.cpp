@@ -88,7 +88,7 @@ int main() {
                 exit(0);
             }
             case 1: {
-                cout << "\nPASAULIS GENERUOJAMAS...\n"; //TODO: krovima pademonstruoti
+                cout << "\nPASAULIS GENERUOJAMAS...\n";                          //TODO: krovima pademonstruoti
                 int xZaid, yZaid;
                 int xPard, yPard;
                 int xDung, yDung;
@@ -104,7 +104,7 @@ int main() {
                 cout << "\n\n0 - ATGAL I MENU;\n"
                         "1 - JUDETI (RODYKLEMIS);\n";
                 while (zaidVeikia == true) {
-                    cout << "\nPASIRINKITE VEIKSMA: ";
+                    cout << "\nPASIRINKITE VEIKSMA: ";                  //TODO: sugeneruotus dungeonus matymo zonoje vaizduoti
                     cin >> zaidMenu;
                     switch(zaidMenu) {
                         case 0: {
@@ -124,10 +124,10 @@ int main() {
                                     case KEY_UP: {
                                         if (yZaid > 0) {
                                             temp = zemelapis[yZaid - 1][xZaid];
-                                            zemelapis[yZaid - 1][xZaid] = zemelapis[yZaid][xZaid]; 
-                                            zemelapis[yZaid][xZaid] = temp1;
-                                            temp1 = temp;
-                                            yZaid = yZaid - 1;
+                                            zemelapis[yZaid - 1][xZaid] = zemelapis[yZaid][xZaid];            //TODO: uzejus pakeisti icona
+                                            zemelapis[yZaid][xZaid] = temp1;                                  //TODO: prideti komentaru, pakeisti spalva i neutralesne
+                                            temp1 = temp;                                                     //TODO: zemelapio ribos kalnai
+                                            yZaid = yZaid - 1;                                               
                                             if (yZaid > 2) zaidejoMatomumas(xZaid, yZaid);
                                             vaizduotiZemelapi();
                                             cout << "\n";

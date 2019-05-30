@@ -1,3 +1,6 @@
+#ifndef ATNAUJINTIZAIDEJOMATOMUMA_H
+#define ATNAUJINTIZAIDEJOMATOMUMA_H
+
 void atnaujintiZaidejoMatomuma(char zemelapis[30][120], int &xZaid, int &yZaid, int dungKord[]) {
     int xDung, yDung;
     //zaidejas mato 7x7 plota (jis viduri), pajudejus sie ciklai atnaujina matymo zona jeigu reikia, taip pat atranda dungeonus tame plote jeigu yra
@@ -15,3 +18,5 @@ void atnaujintiZaidejoMatomuma(char zemelapis[30][120], int &xZaid, int &yZaid, 
         }
     }
 }
+
+#endif

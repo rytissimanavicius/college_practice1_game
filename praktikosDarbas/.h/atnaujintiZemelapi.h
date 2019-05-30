@@ -1,4 +1,5 @@
-#include <iostream>
+#ifndef ATNAUJINTIZEMELAPI_H
+#define ATNAUJINTIZEMELAPI_H
 
 using namespace std;
 
@@ -10,3 +11,5 @@ void vaizduotiZemelapi(char zemelapis[30][120], int zemPlotis, int zemAukstis) {
         }
     }
 }
+
+#endif

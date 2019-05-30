@@ -1,3 +1,6 @@
+#ifndef SANSOKAULIUKAS_H
+#define SANSOKAULIUKAS_H
+
 #include <random>
 #include <ctime>
 
@@ -10,3 +13,5 @@ int rastiObjPoz(int sansas) {
     uniform_int_distribution<uint32_t> random2(5, 100);
     return sansas;
 }
+
+#endif

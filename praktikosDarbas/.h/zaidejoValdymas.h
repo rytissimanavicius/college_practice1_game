@@ -1,4 +1,9 @@
+#ifndef ZAIDEJOVALDYMAS_H
+#define ZAIDEJOVALDYMAS_H
+
 #include <conio.h>
+
+#include "zaidejoDuomenys.h"
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -10,12 +15,14 @@ void valdymoPaaiskinimas() {
             "\nW - JUDETI I VIRSU."
             "\nS - JUDETI I APACIA."
             "\nA - JUDETI I KAIRE."
-            "\nD - JUDETI I DESINE.";
+            "\nD - JUDETI I DESINE."
+            "\nSPACE - VALDYMAS.\n";
 }
-void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int dungKord[30]) {
-    bool zaidVaiksto = true, pirmEjimas = true;
+void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int dungKord[30], int nr) {
+    bool zaidVaiksto = true, pirmEjimas = true, naujinti = false;
     char temp, temp1 = '.';
     int bind;
+    valdymoPaaiskinimas();
     while(zaidVaiksto == true) {
         switch((bind = getch())) {
             case VK_ESCAPE: {
@@ -38,10 +45,11 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     if (yZaid > 2) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                     vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";
+                    //gaus 5 xp uz viena ejima, praras maisto...
+                    naujinti = true;
                     Sleep(100);
                     }
-                else cout << "PASIEKETE RIBA!\n";
-                valdymoPaaiskinimas();
+                else cout << "\n\nPASIEKETE RIBA!\n";
                 break;
             }
             case KEY_DOWN: {
@@ -53,11 +61,11 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     yZaid = yZaid + 1;
                     if (yZaid < 27) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);              
                     vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
-                    cout << "\n";                                                 
+                    cout << "\n";   
+                    naujinti = true;                                              
                     Sleep(100);
                 }
-                else cout << "\nPASIEKETE RIBA!\n";
-                valdymoPaaiskinimas();
+                else cout << "\n\nPASIEKETE RIBA!\n";
                 break;
             }
             case KEY_LEFT: {
@@ -70,10 +78,10 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     if (xZaid > 2) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                     vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";
+                    naujinti = true;
                     Sleep(100);
                 }
-                else cout << "\nPASIEKETE RIBA!\n";
-                valdymoPaaiskinimas();
+                else cout << "\n\nPASIEKETE RIBA!\n";
                 break;
             }
             case KEY_RIGHT: {
@@ -86,14 +94,24 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     if (xZaid < 116) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                     vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";
+                    naujinti = true;
                     Sleep(100);
                 }
-                else cout << "\nPASIEKETE RIBA!\n";
-                valdymoPaaiskinimas();
+                else cout << "\n\nPASIEKETE RIBA!\n";
                 break;
             }
+            case VK_SPACE: {
+                valdymoPaaiskinimas();
+            }
+        }
+        if (naujinti == true) {
+            zaidejoDuomenys(nr, naujinti);
+            duomSpausdinimas(nr);
+            naujinti = false;
         }
     }
 }
+
+#endif
 
 //TODO: default prideti, tikrinimus

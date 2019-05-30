@@ -1,9 +1,11 @@
-#include <iostream>
+#ifndef ZEMELAPIOOBJEKTUGENERAVIMAS_H
+#define ZEMELAPIOOBJEKTUGENERAVIMAS_H
+
 #include <windows.h>
 
 using namespace std;
 
-void generuotiZemelapi(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int &xPard, int &yPard, int dungKord[]) {
+void generuotiZemelapi(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int &xMiest, int &yMiest, int dungKord[]) {
     //uzpildo zemelapi
     for (int i = 0; i < zemAukstis; i++) {
         for (int j = 0; j < zemPlotis; j++) {
@@ -18,16 +20,18 @@ void generuotiZemelapi(char zemelapis[30][120], int zemPlotis, int zemAukstis, i
     //iskviecia funkcija kuri pasirenka atsitiktine miesto pozicija
     bool nesutampaKord = false;
     while (nesutampaKord == false) {
-        rastiObjPoz(zemPlotis, zemAukstis, 3, xPard, yPard);
-        if (xPard != xZaid && yPard != yZaid) nesutampaKord = true;
-    }
-    zemelapis[yPard][xPard] = 'M';
+        rastiObjPoz(zemPlotis, zemAukstis, 3, xMiest, yMiest);
+        if (xMiest != xZaid && yMiest != yZaid) nesutampaKord = true;                      //TODO: kaima sukurt ekonomikai simuliuot
+    } 
+    zemelapis[yMiest][xMiest] = 'M';
     Sleep(1000);
+    //iskviecia funkcija kuri pasirenka atsitiktine kaimo pozicija
+    
     //sugeneruoja dungeonu pozicijas, tikrina ar nesutampa su Z ir M, jeigu ne jas talpina i masyva
     int x, y;
     for (int i = 0; i < 30; i+=2) {
         rastiObjPoz(zemPlotis, zemAukstis, 3, x, y);
-        if (x != xZaid && y != yZaid && x != xPard && y != yPard) {
+        if (x != xZaid && y != yZaid && x != xMiest && y != yMiest) {
             dungKord[i] = x;
             dungKord[i + 1] = y;  
         }       
@@ -35,3 +39,5 @@ void generuotiZemelapi(char zemelapis[30][120], int zemPlotis, int zemAukstis, i
         Sleep(1000);   
     }
 }
+
+#endif

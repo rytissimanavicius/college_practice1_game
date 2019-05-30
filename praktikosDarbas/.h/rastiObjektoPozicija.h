@@ -1,3 +1,6 @@
+#ifndef RASTIOBJEKTOPOZICIJA_H
+#define RASTIOBJEKTOPOZICIJA_H
+
 #include <random>
 #include <ctime>
 
@@ -10,5 +13,7 @@ int rastiObjPoz(int zemPlotis, int zemAukstis, int nuoKrasto, int &x, int &y) {
     uniform_int_distribution<uint32_t> random2(nuoKrasto, (zemAukstis - nuoKrasto) - 1);
     return x = random1(gen), y = random2(gen);
 }
+
+#endif
 
 //FIXME: pakeisti jeigu pavyks atsitiktiniu skaiciu generavima, kad nepriklausytu nuo laiko

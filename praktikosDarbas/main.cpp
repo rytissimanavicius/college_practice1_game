@@ -28,19 +28,32 @@ int main() {
             }
             case 1: {                         
                 int xZaid, yZaid;
-                int xPard, yPard;
-                int dungKord[30];
-                int nr = 0;
-                zaidejoDuomenys(nr);
-                cout << "\nPASAULIS GENERUOJAMAS...\n"; 
-                generuotiZemelapi(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xPard, yPard, dungKord);
+                int xMiest, yMiest;
+                int dungKord[30], nr = 0;
+                //zaidejo informacijos deklaravimas
+                while (nr < 1 || nr > 5) {
+                        cout << "\nKURIA ZAIDEJO VIETA RENKATES: ";
+                        cin >> nr;
+                    }
+                cout << "IVESKITE ZAIDEJO VARDA: ";
+                cin >> zaidDuom[nr].vardas;
+                zaidDuom[nr].xp = 0;
+                zaidDuom[nr].hp = 100;
+                zaidDuom[nr].def = 0;
+                zaidDuom[nr].lvl = 0;
+                zaidDuom[nr].gold = 500;
+                zaidDuom[nr].maistas = 100;
+                zaidejasSukurtas = true;
+                cout << "\nPASAULIS GENERUOJAMAS...\n";
+                //generuoja pasauli: sudeda objektus, nustato matymo zonas ir t.t.
+                generuotiZemelapi(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, dungKord);
                 atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                 vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                 //zaidimo meniu pradzia
                 bool zaidVeikia = true;
                 int zaidMenu = -1;
                 while (zaidVeikia == true) {
-                    zaidejoDuomenys(nr);
+                    duomSpausdinimas(nr);
                     cout << "\n\n0 - ISEITI IS ZAIDIMO.\n"
                             "1 - JUDETI ZEMELAPYJE.\n"
                             "2 - INVENTORIUS.\n" 
@@ -53,7 +66,7 @@ int main() {
                             break;
                         }
                         case 1: {
-                            zaidejoValdymas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, dungKord);
+                            zaidejoValdymas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, dungKord, nr);
                             break;
                         }
                         case 2: {

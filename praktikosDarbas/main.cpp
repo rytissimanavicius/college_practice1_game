@@ -6,6 +6,7 @@
 #include ".h/atnaujintiZaidejoMatomuma.h"
 #include ".h/zemelapioObjektuGeneravimas.h"
 #include ".h/zaidejoValdymas.h"
+#include ".h/zaidejoDuomenys.h"
 
 using namespace std;
 
@@ -16,8 +17,8 @@ int main() {
     //pagrindinio meniu pradzia
     bool procVeikia = true;
     int pagrMeniu = -1;
-    cout << "\n0 - BAIGTI ZAIDIMA;\n" 
-            "1 - PRADETI NAUJA ZAIDIMA;\n";
+    cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
+            "1 - PRADETI NAUJA ZAIDIMA.\n";
     while (procVeikia == true) {
         cout << "\nPASIRINKITE MENU PUNKTA: ";
         cin >> pagrMeniu;
@@ -25,21 +26,25 @@ int main() {
             case 0: {
                 exit(0);
             }
-            case 1: {
-                cout << "\nPASAULIS GENERUOJAMAS...\n";                          
+            case 1: {                         
                 int xZaid, yZaid;
                 int xPard, yPard;
                 int dungKord[30];
+                int nr = 0;
+                zaidejoDuomenys(nr);
+                cout << "\nPASAULIS GENERUOJAMAS...\n"; 
                 generuotiZemelapi(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xPard, yPard, dungKord);
-                zaidejoMatomumas(zemelapis, xZaid, yZaid, dungKord);
+                atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                 vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                 //zaidimo meniu pradzia
                 bool zaidVeikia = true;
                 int zaidMenu = -1;
-                cout << "\n\n0 - ATGAL I MENU;\n"
-                        "1 - JUDETI (RODYKLEMIS);\n";
                 while (zaidVeikia == true) {
-                    cout << "\nPASIRINKITE VEIKSMA: ";               
+                    zaidejoDuomenys(nr);
+                    cout << "\n\n0 - ISEITI IS ZAIDIMO.\n"
+                            "1 - JUDETI ZEMELAPYJE.\n"
+                            "2 - INVENTORIUS.\n" 
+                            "\nPASIRINKITE VEIKSMA: ";             
                     cin >> zaidMenu;
                     switch(zaidMenu) {
                         case 0: {
@@ -49,6 +54,10 @@ int main() {
                         }
                         case 1: {
                             zaidejoValdymas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, dungKord);
+                            break;
+                        }
+                        case 2: {
+                            //inv
                             break;
                         }
                         default: {

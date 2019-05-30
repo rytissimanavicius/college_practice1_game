@@ -5,6 +5,13 @@
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 
+void valdymoPaaiskinimas() {
+    cout << "\nESC - SUSTOTI."
+            "\nW - JUDETI I VIRSU."
+            "\nS - JUDETI I APACIA."
+            "\nA - JUDETI I KAIRE."
+            "\nD - JUDETI I DESINE.";
+}
 void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int dungKord[30]) {
     bool zaidVaiksto = true, pirmEjimas = true;
     char temp, temp1 = '.';
@@ -28,13 +35,14 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     //keitesi pozicija zaidejo, tai reikia ir jo koordinate pakeisti                                               
                     yZaid = yZaid - 1;    
                     //iskviecia funkcija kuri po judejimo atnaujina matymo zona, neskaitant kalnu siaurese (nes cia juda i virsu)                                           
-                    if (yZaid > 2) zaidejoMatomumas(zemelapis, xZaid, yZaid, dungKord);
+                    if (yZaid > 2) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                     vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";
                     Sleep(100);
                     }
-                    else cout << "PASIEKETE RIBA!\n";
-                    break;
+                else cout << "PASIEKETE RIBA!\n";
+                valdymoPaaiskinimas();
+                break;
             }
             case KEY_DOWN: {
                 if (yZaid < 26) {
@@ -43,12 +51,13 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     zemelapis[yZaid][xZaid] = temp1;
                     temp1 = temp;
                     yZaid = yZaid + 1;
-                    if (yZaid < 27) zaidejoMatomumas(zemelapis, xZaid, yZaid, dungKord);              
+                    if (yZaid < 27) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);              
                     vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";                                                 
                     Sleep(100);
                 }
                 else cout << "\nPASIEKETE RIBA!\n";
+                valdymoPaaiskinimas();
                 break;
             }
             case KEY_LEFT: {
@@ -58,12 +67,13 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     zemelapis[yZaid][xZaid] = temp1;
                     temp1 = temp;
                     xZaid = xZaid - 1;
-                    if (xZaid > 2) zaidejoMatomumas(zemelapis, xZaid, yZaid, dungKord);
+                    if (xZaid > 2) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                     vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";
                     Sleep(100);
                 }
                 else cout << "\nPASIEKETE RIBA!\n";
+                valdymoPaaiskinimas();
                 break;
             }
             case KEY_RIGHT: {
@@ -73,12 +83,13 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     zemelapis[yZaid][xZaid] = temp1;
                     temp1 = temp;
                     xZaid = xZaid + 1;
-                    if (xZaid < 116) zaidejoMatomumas(zemelapis, xZaid, yZaid, dungKord);
+                    if (xZaid < 116) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                     vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";
                     Sleep(100);
                 }
                 else cout << "\nPASIEKETE RIBA!\n";
+                valdymoPaaiskinimas();
                 break;
             }
         }

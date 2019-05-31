@@ -1,8 +1,6 @@
 #ifndef ZAIDEJODUOMENYS_H
 #define ZAIDEJODUOMENYS_H
 
-#include <fstream>
-
 using namespace std;
 
 bool zaidejasSukurtas = false;

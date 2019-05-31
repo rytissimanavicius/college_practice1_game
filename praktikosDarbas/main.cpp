@@ -7,6 +7,7 @@
 #include ".h/zemelapioObjektuGeneravimas.h"
 #include ".h/zaidejoValdymas.h"
 #include ".h/zaidejoDuomenys.h"
+#include ".h/zaidejoInventorius.h"
 
 using namespace std;
 
@@ -29,6 +30,7 @@ int main() {
             case 1: {                         
                 int xZaid, yZaid;
                 int xMiest, yMiest;
+                int xKaim, yKaim;
                 int dungKord[30], nr = 0;
                 //zaidejo informacijos deklaravimas
                 while (nr < 1 || nr > 5) {
@@ -46,7 +48,7 @@ int main() {
                 zaidejasSukurtas = true;
                 cout << "\nPASAULIS GENERUOJAMAS...\n";
                 //generuoja pasauli: sudeda objektus, nustato matymo zonas ir t.t.
-                generuotiZemelapi(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, dungKord);
+                generuotiZemelapi(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord);
                 atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                 vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
                 //zaidimo meniu pradzia
@@ -70,7 +72,7 @@ int main() {
                             break;
                         }
                         case 2: {
-                            //inv
+                            zaidejoInventorius();
                             break;
                         }
                         default: {

@@ -1,18 +1,19 @@
 #include <iostream>
 #include <conio.h>
 
-#include ".h/rastiObjektoPozicija.h"
-#include ".h/atnaujintiZemelapi.h"
-#include ".h/atnaujintiZaidejoMatomuma.h"
-#include ".h/zemelapioObjektuGeneravimas.h"
-#include ".h/zaidejoValdymas.h"
-#include ".h/zaidejoDuomenys.h"
-#include ".h/zaidejoInventorius.h"
-#include ".h/zaidimoSaugojimas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zemelapioObjektuGeneravimas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\zaidimoSaugojimas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZaidejoMatomuma.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZemelapi.h" 
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zaidejoValdymas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\duotiPradineIranga.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h"
+                                                                       //FIXME: aplamai headerius su funkcijomis vadink vienodai
 
 using namespace std;
 
 int main() {
+    //zemelapio dydis ir kintamieji jam prisiminti
     char zemelapis[30][120];
     int zemPlotis = 120;
     int zemAukstis = 30;
@@ -29,28 +30,27 @@ int main() {
             case 0: {
                 exit(0);
             }
-            case 1: {                         
+            case 1: {     
+                //kintamieji ir masyvai skirti pagrindiniams pasaulio objektams prisiminti                    
                 int xZaid, yZaid;
                 int xMiest, yMiest;
                 int xKaim, yKaim;
                 int dungKord[30], nr = 0;
-                //zaidejo informacijos deklaravimas
+                //issaugotu zaideju sarasas ir vietos pasirinkimas
                 atspausdintiIssaugotus();
-                issaugoti();
+                issaugotiDabartini();
+                //zaidejo kurimas
                 cout << "\nIVESKITE ZAIDEJO VARDA: ";
                 cin >> zaidDuom[nr].vardas;
                 zaidejasSukurtas = true;
-                cout << "\nPASAULIS GENERUOJAMAS...\n";
-                //generuoja pasauli: sudeda objektus, nustato matymo zonas ir t.t.
+                //generavimo progreso atvaizdavimas
+                cout << "\nPASAULIS GENERUOJAMAS...\n"; //TODO: pademonstruoti krovima
+                //sudeda objektus, nustato matymo zonas ir vaizduoja zemelapi
                 generuotiZemelapi(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord);
                 atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                 vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
-                //duoda pradinius daiktus
-                
-
-
-
-
+                //priskiria pradinius daiktus
+                duotiPradineIranga();
                 //zaidimo meniu pradzia
                 bool zaidVeikia = true;
                 int zaidMenu = -1;
@@ -67,6 +67,7 @@ int main() {
                             break;
                         }
                         case 1: {
+                            //vaiksciojimo po zemelapi procesas
                             zaidejoValdymas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr);
                             break;
                         }
@@ -93,5 +94,3 @@ int main() {
     }
     return 0;
 }
-
-//TODO: pademonstruoti pasaulio krovima

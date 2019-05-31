@@ -12,7 +12,7 @@ void atnaujintiZaidejoMatomuma(char zemelapis[30][120], int &xZaid, int &yZaid, 
                 if (zemelapis[i][j] != 'Z' && zemelapis[i][j] != 'D' && j == dungKord[k] && i == dungKord[k + 1]) zemelapis[i][j] = 'D';
             }
             //naujai matoma zona tampa ".", isskyrus duotus atvejus
-            if (zemelapis[i][j] != '.' && zemelapis[i][j] != '^' && zemelapis[i][j] != 'Z' && zemelapis[i][j] != 'M' && zemelapis[i][j] != 'D') {
+            if (zemelapis[i][j] != '.' && zemelapis[i][j] != '^' && zemelapis[i][j] != 'Z' && zemelapis[i][j] != 'M' && zemelapis[i][j] != 'K' && zemelapis[i][j] != 'D') {
                 zemelapis[i][j] = '.';
             }
         }

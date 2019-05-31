@@ -8,6 +8,7 @@
 #include ".h/zaidejoValdymas.h"
 #include ".h/zaidejoDuomenys.h"
 #include ".h/zaidejoInventorius.h"
+#include ".h/zaidimoSaugojimas.h"
 
 using namespace std;
 
@@ -19,7 +20,8 @@ int main() {
     bool procVeikia = true;
     int pagrMeniu = -1;
     cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
-            "1 - PRADETI NAUJA ZAIDIMA.\n";
+            "1 - PRADETI NAUJA ZAIDIMA.\n"
+            "2 - ISSAUGOTI ZAIDIMAI.\n";
     while (procVeikia == true) {
         cout << "\nPASIRINKITE MENU PUNKTA: ";
         cin >> pagrMeniu;
@@ -33,29 +35,26 @@ int main() {
                 int xKaim, yKaim;
                 int dungKord[30], nr = 0;
                 //zaidejo informacijos deklaravimas
-                while (nr < 1 || nr > 5) {
-                        cout << "\nKURIA ZAIDEJO VIETA RENKATES: ";
-                        cin >> nr;
-                    }
-                cout << "IVESKITE ZAIDEJO VARDA: ";
+                atspausdintiIssaugotus();
+                issaugoti();
+                cout << "\nIVESKITE ZAIDEJO VARDA: ";
                 cin >> zaidDuom[nr].vardas;
-                zaidDuom[nr].xp = 0;
-                zaidDuom[nr].hp = 100;
-                zaidDuom[nr].def = 0;
-                zaidDuom[nr].lvl = 0;
-                zaidDuom[nr].gold = 500;
-                zaidDuom[nr].maistas = 100;
                 zaidejasSukurtas = true;
                 cout << "\nPASAULIS GENERUOJAMAS...\n";
                 //generuoja pasauli: sudeda objektus, nustato matymo zonas ir t.t.
                 generuotiZemelapi(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord);
                 atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                 vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
+                //duoda pradinius daiktus
+                
+
+
+
+
                 //zaidimo meniu pradzia
                 bool zaidVeikia = true;
                 int zaidMenu = -1;
                 while (zaidVeikia == true) {
-                    duomSpausdinimas(nr);
                     cout << "\n\n0 - ISEITI IS ZAIDIMO.\n"
                             "1 - JUDETI ZEMELAPYJE.\n"
                             "2 - INVENTORIUS.\n" 
@@ -68,11 +67,11 @@ int main() {
                             break;
                         }
                         case 1: {
-                            zaidejoValdymas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, dungKord, nr);
+                            zaidejoValdymas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr);
                             break;
                         }
                         case 2: {
-                            zaidejoInventorius();
+                            zaidejoInventoriusSpausdinti();
                             break;
                         }
                         default: {
@@ -82,8 +81,12 @@ int main() {
                 }
                 break;
             }
+            case 2: {
+                atspausdintiIssaugotus();
+                break;
+            }
             default: {
-                cout << "\nSIS MENU PUNKTAS NEEGZISTUOJA, PASIRINKITE IS NAUJO!";
+                cout << "\nSIS MENU PUNKTAS NEEGZISTUOJA, PASIRINKITE IS NAUJO!\n";
                 break;
             }
         }
@@ -92,4 +95,3 @@ int main() {
 }
 
 //TODO: pademonstruoti pasaulio krovima
-//TODO: komentaru spalva pakeist

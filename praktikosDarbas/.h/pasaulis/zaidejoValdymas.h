@@ -11,7 +11,7 @@
 #define KEY_LEFT 75
 #define KEY_RIGHT 77
 
-void valdymoPaaiskinimas() { //TODO: valdymo paaiskinimui sukurti atskira headeri, cia ir zaidejasSuObjektu kad naudotu viena
+void valdymoPaaiskinimas() {
     cout << "\nESC - SUSTOTI."
             "\nUP - JUDETI I VIRSU."
             "\nDOWN - JUDETI I APACIA."
@@ -19,9 +19,8 @@ void valdymoPaaiskinimas() { //TODO: valdymo paaiskinimui sukurti atskira header
             "\nDESINE - JUDETI I DESINE."
             "\nSPACE - VALDYMAS.\n";
 }
-void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr) {
+void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1) {
     bool zaidVaiksto = true, pirmEjimas = true, naujinti = false;
-    char temp, temp1 = '.';
     int bind;
     valdymoPaaiskinimas();
     while(zaidVaiksto == true) {
@@ -44,7 +43,7 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     yZaid = yZaid - 1;    
                     //iskviecia funkcija kuri po judejimo atnaujina matymo zona, neskaitant kalnu siaurese (nes cia juda i virsu)                                           
                     if (yZaid > 2) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
-                    vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
+                    atnaujintiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";
                     //gaus 5 xp uz viena ejima, praras maisto...
                     naujinti = true;
@@ -61,7 +60,7 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     temp1 = temp;
                     yZaid = yZaid + 1;
                     if (yZaid < 27) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);              
-                    vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
+                    atnaujintiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";   
                     naujinti = true;                                              
                     Sleep(100);
@@ -77,7 +76,7 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     temp1 = temp;
                     xZaid = xZaid - 1;
                     if (xZaid > 2) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
-                    vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
+                    atnaujintiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";
                     naujinti = true;
                     Sleep(100);
@@ -93,7 +92,7 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
                     temp1 = temp;
                     xZaid = xZaid + 1;
                     if (xZaid < 116) atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
-                    vaizduotiZemelapi(zemelapis, zemPlotis, zemAukstis);
+                    atnaujintiZemelapi(zemelapis, zemPlotis, zemAukstis);
                     cout << "\n";
                     naujinti = true;
                     Sleep(100);
@@ -107,7 +106,7 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
         }
         if (naujinti == true) {
             zaidejoDuomenys(nr, naujinti);
-            duomSpausdinimas(nr);
+            zaidejoDuomenuSpausdinimas(nr);
             zaidejasSuObjektu(zemelapis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, nr);
             naujinti = false;
         }

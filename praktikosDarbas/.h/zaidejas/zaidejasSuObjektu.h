@@ -2,6 +2,9 @@
 #define ZAIDEJASSUOBJEKTU_H
 
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\daiktai\daiktuStrukturos.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\misijos\banditas.h"
 
 void valdymoPaaiskinimas1() {
     cout << "\nESC - SUSTOTI."
@@ -23,6 +26,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
             cout << "0. ISEITI."
                     "\n1. PIRKTI."
                     "\n2. PARDUOTI."
+                    "\n3. MISIJA."
                     "\n\nPASIRINKITE VEIKSMA: ";
             cin >> rinktis;
             switch(rinktis) {
@@ -54,10 +58,42 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                             }
                         }
                         else if (rinktis1 == 2) {
-                            cout << "IVESKITE KIEKI (150 AUKSO): ";
+                            cout << "\nIVESKITE KIEKI (JUSU AUKSAS - " << zaidDuom[nr].gold << "): ";
                             cin >> kiekis;
+                            if (kiekis * 150 > zaidDuom[nr].gold) {
+                                cout << "\nNEPAKANKA AUKSO!\n";
+                            }
+                            else {
+                                for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) {
+                                    //jeigu jau toks slot egzistuoja
+                                    if (zaidInv[i].pav == "GYVYBES POTION") {
+                                        potion.kiekis += kiekis;
+                                        zaidDuom[nr].gold -= (kiekis * 150);
+                                        cout << "\nSEKMINGAI NUPIRKA!\n";
+                                        break;
+                                    }
+                                    //jeigu potionu nebera parinks laisva slot jiem
+                                    else if (zaidInv[i].pav == "-" && i != 0 && i != 1 && i != 2) {
+                                        zaidInv[i].pav = potion.pav;
+                                        zaidInv[i].tipas = potion.tipas;
+                                        potion.kiekis += kiekis;
+                                        zaidDuom[nr].gold -= (kiekis * 150);
+                                        cout << "\nSEKMINGAI NUPIRKA!\n";
+                                        break;
+                                    }
+                                    else if (i == 9) cout << "\nINVENTORIUS PILNAS!\n";
+                                }
+                            }
                         }
                     } 
+                    break;
+                }
+                case 2: {
+
+                    break;
+                }
+                case 3: {
+                    banditas(nr);
                     break;
                 }
                 default: {
@@ -105,8 +141,30 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                             }
                         }
                         else if (rinktis1 == 2) {
-                            cout << "IVESKITE KIEKI (100 AUKSO): ";
+                            cout << "\nIVESKITE KIEKI (JUSU AUKSAS - " << zaidDuom[nr].gold << "): ";
                             cin >> kiekis;
+                            if (kiekis * 100 > zaidDuom[nr].gold) {
+                                cout << "\nNEPAKANKA AUKSO!\n";
+                            }
+                            else {
+                                for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) { //TODO:
+                                    if (zaidInv[i].pav == "GYVYBES POTION") {
+                                        potion.kiekis += kiekis;
+                                        zaidDuom[nr].gold -= (kiekis * 100);
+                                        cout << "\nSEKMINGAI NUPIRKA!\n";
+                                        break;
+                                    }
+                                    else if (zaidInv[i].pav == "-" && i != 0 && i != 1 && i != 2) {
+                                        zaidInv[i].pav = potion.pav;
+                                        zaidInv[i].tipas = potion.tipas;
+                                        potion.kiekis += kiekis;
+                                        zaidDuom[nr].gold -= (kiekis * 100);
+                                        cout << "\nSEKMINGAI NUPIRKA!\n";
+                                        break;
+                                    }
+                                    else if (i == 9) cout << "\nINVENTORIUS PILNAS!\n";
+                                }
+                            }
                         }
                     } 
                     break;

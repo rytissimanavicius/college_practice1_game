@@ -13,16 +13,16 @@ void atspausdintiIssaugotus() {
         cout << "\n" << i + 1 << ". " << zaidSaug[i].saugoti;
     }
 }
-void issaugotiDabartini() {
+void zaidimoSaugojimas() {
     int vieta;
-    cout << "\n\nPASIRINKITE VIETA: ";
+    cout << "\n\nPASIRINKITE SAUGOJIMO VIETA: ";
     cin >> vieta;
     while (vieta < 1 || vieta > 5 || zaidSaug[vieta - 1].laisva == false) {
-        cout << "\nPASIRINKITE VIETA: ";
+        cout << "PASIRINKITE SAUGOJIMO VIETA: ";
         cin >> vieta;
     }
     zaidSaug[vieta - 1].laisva == false;
-    cout << "\nSAUGOJIMO PAVADINIMAS: ";
+    cout << "PASIRINKITE SAUGOJIMO PAVADINIMA: ";
     cin >> zaidSaug[vieta - 1].saugoti; 
 }
 #endif

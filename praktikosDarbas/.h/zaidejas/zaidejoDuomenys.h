@@ -6,33 +6,35 @@ using namespace std;
 bool zaidejasSukurtas = false;
 
 struct zaidDuom {
-    string vardas;
+    string vardas = "-";
+    char sunkumas = '0'; //1, 2, 3
     int hp = 100;
     int def = 0;
-    int xp = 0; //TODO: optimaliau bandyti
-    int lvl = 0; //TODO:
+    int atk = 0;
+    int shield = 0;
+    int xp = 0; 
+    int lvl = 0; 
     int gold = 500;
     int maistas = 200;
-    int karma = 50; //TODO:
 } zaidDuom[5];
-void zaidejoDuomenys(int &nr, bool naujinti) {
+//efektai judant zemelapiu, krenta maistas, dideja xp
+void zaidejoDuomenys(int nr, bool naujinti) {
     if (naujinti == true) {
         zaidDuom[nr].xp += 5;
         if (zaidDuom[nr].maistas > 0) zaidDuom[nr].maistas -= 2;
         if (zaidDuom[nr].maistas == 0) zaidDuom[nr].hp -= 2;
     }
 }
-void karma() {
-
-}
-void duomSpausdinimas(int nr) {
-    cout << "\nGYVYBE: " << zaidDuom[nr].hp <<
+//judant zemelapiu spausdina reguliariai duomenis
+void zaidejoDuomenuSpausdinimas(int nr) {
+    cout << "GYVYBE: " << zaidDuom[nr].hp <<
             "\nSARVAI: " << zaidDuom[nr].def <<
+            "\n\nPUOLIMAS: " << zaidDuom[nr].atk <<
+            "\nGYNYBA: " << zaidDuom[nr].shield <<
+            "\n\nLYGIS: " << zaidDuom[nr].lvl <<
             "\nXP: " << zaidDuom[nr].xp <<
-            "\nLYGIS: " << zaidDuom[nr].lvl <<
-            "\nAUKSAS: " << zaidDuom[nr].gold <<
-            "\nMAISTAS: " << zaidDuom[nr].maistas <<
-            "\nKARMA: " << zaidDuom[nr].karma;
+            "\n\nAUKSAS: " << zaidDuom[nr].gold <<
+            "\nMAISTAS: " << zaidDuom[nr].maistas;
 }
 
 #endif

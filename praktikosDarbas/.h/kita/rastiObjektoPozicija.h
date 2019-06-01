@@ -6,7 +6,7 @@
 
 using namespace std;
 
-int rastiObjPoz(int zemPlotis, int zemAukstis, int nuoKrasto, int &x, int &y) { //FIXME: pakeisti jeigu pavyks atsitiktiniu skaiciu generavima, kad nepriklausytu nuo laiko
+int rastiObjektoPozicija(int zemPlotis, int zemAukstis, int nuoKrasto, int &x, int &y) { //FIXME: pakeisti jeigu pavyks atsitiktiniu skaiciu generavima, kad nepriklausytu nuo laiko
     mt19937 gen;
     gen.seed(time(0));
     uniform_int_distribution<uint32_t> random1(nuoKrasto, (zemPlotis - nuoKrasto) - 1);

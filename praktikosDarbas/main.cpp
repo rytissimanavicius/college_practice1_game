@@ -6,6 +6,7 @@
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZemelapi.h" 
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zaidejoValdymas.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h" 
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
 
 using namespace std;
 
@@ -61,7 +62,9 @@ int main() {
                 while (zaidVeikia == true) {
                     cout << "\n0 - ISEITI IS ZAIDIMO.\n"
                             "1 - JUDETI ZEMELAPYJE.\n"
-                            "2 - INVENTORIUS.\n" 
+                            "2 - INVENTORIUS.\n"
+                            "3 - DUOMENYS.\n"
+                            "4 - AKTYVIOS MISIJOS\n"
                             "\nPASIRINKITE VEIKSMA: ";             
                     cin >> zaidMenu;
                     switch(zaidMenu) {
@@ -78,6 +81,16 @@ int main() {
                         case 2: {
                             zaidejoInventoriusSpausdinimas(nr);
                             zaidejoInventoriausFunkcijos(nr);
+                            break;
+                        }
+                        case 3: {
+                            cout << "\n";
+                            zaidejoDuomenuSpausdinimas(nr);
+                            cout << "\n";
+                            break;
+                        }
+                        case 4: {
+
                             break;
                         }
                         default: {

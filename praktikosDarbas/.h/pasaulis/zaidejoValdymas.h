@@ -16,7 +16,7 @@ void valdymoPaaiskinimas() {
             "\nUP - JUDETI I VIRSU."
             "\nDOWN - JUDETI I APACIA."
             "\nLEFT - JUDETI I KAIRE."
-            "\nDESINE - JUDETI I DESINE."
+            "\nDESINE - JUDETI I DESINE." //FIXME: zemPlotis ir zemAukstis gal nereikalingi, galim naudot sizeof
             "\nSPACE - VALDYMAS.\n";
 }
 void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1) {
@@ -107,7 +107,8 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
         if (naujinti == true) {
             zaidejoDuomenys(nr, naujinti);
             zaidejoDuomenuSpausdinimas(nr);
-            zaidejasSuObjektu(zemelapis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, nr);
+            pasikeleLygi(nr);
+            zaidejasSuObjektu(zemelapis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, nr, dungKord);
             naujinti = false;
         }
     }

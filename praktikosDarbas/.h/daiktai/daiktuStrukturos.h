@@ -1,8 +1,6 @@
 #ifndef DAIKTUSTRUKTUROS_H
 #define DAIKTUSTRUKTUROS_H
 
-using namespace std;
-
 struct sarvai {       
     string pav = "-";
     int gynyba = 0;

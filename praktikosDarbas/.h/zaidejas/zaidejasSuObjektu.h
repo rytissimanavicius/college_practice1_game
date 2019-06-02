@@ -5,6 +5,7 @@
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\daiktai\daiktuStrukturos.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\misijos\banditas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\priesai\kova.h"
 
 void valdymoPaaiskinimas1() {
     cout << "\nESC - SUSTOTI."
@@ -14,7 +15,7 @@ void valdymoPaaiskinimas1() {
             "\nDESINE - JUDETI I DESINE."
             "\nSPACE - VALDYMAS.\n";
 }
-void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int nr) {
+void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int nr, int dungKord[30]) {
     int rinktis, rinktis1, kiekis;
     bool lankosi = true, lankosi1 = true, sveikinimas = true, sekmingai = false;
     while (lankosi == true) {
@@ -172,6 +173,33 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                 default: {
                     cout << "\nSIS MENU PUNKTAS NEEGZISTUOJA, PASIRINKITE IS NAUJO!\n";
                     break;
+                }
+            }
+        }
+        for (int i = 0; i < 30; i += 2) { //TODO: neveike su sizeof?
+            if (xZaid == dungKord[i] && yZaid == dungKord[i + 1] && lankosi1 == true) {
+                if (sveikinimas == true) {
+                    cout << "\n\nIZENGETE I DUNGEONA:\n";
+                    sveikinimas = false;
+                }
+                cout << "0. PABEGTI."
+                        "\n1. KOVOTI."
+                        "\n\nPASIRINKITE VEIKSMA: ";
+                cin >> rinktis;
+                switch(rinktis) {
+                    case 0: {
+                        lankosi1 = false;
+                        valdymoPaaiskinimas1();
+                        break;
+                    }
+                    case 1: {
+                        kova(nr);
+                        break;
+                    }
+                    default: {
+                        cout << "\nSIS MENU PUNKTAS NEEGZISTUOJA, PASIRINKITE IS NAUJO!\n";
+                        break;
+                    }
                 }
             }
         }

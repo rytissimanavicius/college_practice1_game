@@ -24,6 +24,11 @@ void zaidejoInventoriusSpausdinimas(int nr) {
         cout << "\n";
     }
 }
+void atnaujintiZaidejoDuomenis(int nr, int duomenys, int daiktoVieta) {
+    if (daiktoVieta == 0) zaidDuom[nr].def = duomenys;
+    else if (daiktoVieta == 1) zaidDuom[nr].atk = duomenys;
+    else zaidDuom[nr].shield = duomenys;
+}
 void zaidejoInventoriausFunkcijos(int nr) {
     int pasirinkimas;
     cout << "\n0. GRIZTI."
@@ -40,13 +45,43 @@ void zaidejoInventoriausFunkcijos(int nr) {
         if (pirmas == 1 && (zaidInv[antras - 1].tipas == "sarvai" || zaidInv[antras - 1].tipas == "-")) {
             swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
             swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
+            if (zaidInv[antras - 1].tipas == "sarvai") { //TODO: jeigu veiks visur
+                for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) {
+                    if (zaidInv[antras - 1].pav == sarvai[i].pav) {
+                        atnaujintiZaidejoDuomenis(nr, sarvai[i].gynyba, 0);
+                        break;
+                    }
+                }
+            }
+        }
+        else if (pirmas == 2 && (zaidInv[antras - 1].tipas == "kardas" || zaidInv[antras - 1].tipas == "-")) {
+            swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
+            swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
+        }
+        else if (pirmas == 3 && (zaidInv[antras - 1].tipas == "skydas" || zaidInv[antras - 1].tipas == "-")) {
+            swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
+            swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
+        }
+        else if (antras == 1 && (zaidInv[pirmas - 1].tipas == "sarvai" || zaidInv[pirmas - 1].tipas == "-")) {
+            swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
+            swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
+        }
+        else if (antras == 2 && (zaidInv[pirmas - 1].tipas == "kardas" || zaidInv[pirmas - 1].tipas == "-")) {
+            swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
+            swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
+        }
+        else if (antras == 3 && (zaidInv[pirmas - 1].tipas == "skydas" || zaidInv[pirmas - 1].tipas == "-")) {
+            swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
+            swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
+        }
+        else if (pirmas > 3 && pirmas < 11 && antras > 3 && antras < 11) {
+            swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
+            swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
+        }
+        else {
+            cout << "\nPATIKRINKITE AR NEDEDATE NETINKAMU DAIKTU I SARVU, KARDO IR SKYDO VIETAS!\n";
         }
     }
-}
-void atnaujintiZaidejoDuomenis(int nr, int duomenys, int daiktoVieta) {
-    if (daiktoVieta == 0) zaidDuom[nr].def = duomenys;
-    else if (daiktoVieta == 1) zaidDuom[nr].atk = duomenys;
-    else zaidDuom[nr].shield = duomenys;
 }
 void uzdetiSarvus(int nr, string irangosPav, int duomenys) {
     for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) {
@@ -98,9 +133,9 @@ void duotiPradineIranga(int nr) {
     for (int i = 0; i < 3; i++) {
         sansoKauliukas(pavadinimas, 1, 1000);
         irangosPav = mas[pavadinimas];
-        if (i == 0) uzdetiSarvus(nr, irangosPav, 10);
+        if (i == 0) uzdetiSarvus(nr, irangosPav, 100);
         if (i == 1) uzdetiKarda(nr, irangosPav, 20);
-        if (i == 2) uzdetiSkyda(nr, irangosPav, 10);
+        if (i == 2) uzdetiSkyda(nr, irangosPav, 50);
     }
 }
 

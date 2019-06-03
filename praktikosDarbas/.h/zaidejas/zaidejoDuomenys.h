@@ -28,12 +28,16 @@ void zaidejoDuomenys(int nr, bool naujinti) {
     if (naujinti == true) {
         zaidDuom[nr].xp += 5;
         if (zaidDuom[nr].maistas > 0) zaidDuom[nr].maistas -= 2;
-        if (zaidDuom[nr].maistas == 0) zaidDuom[nr].hp -= 2;
+        if (zaidDuom[nr].maistas <= 0) {
+            cout << "\nJUMS BAIGESI MAISTAS, PO MAZU PRARANDATE GYVYBES!\n";
+            zaidDuom[nr].hp -= 2;
+        }
         if (zaidDuom[nr].hp < (100 + lygis.pliusGyvybe)) {
             zaidDuom[nr].maistas -= 1;
             zaidDuom[nr].hp += 2;
             if (zaidDuom[nr].hp > (100 + lygis.pliusGyvybe)) zaidDuom[nr].hp = 100 + lygis.pliusGyvybe;
         }
+        if (zaidDuom[nr].maistas < 0) zaidDuom[nr].maistas == 0;
     }
 }
 //judant zemelapiu spausdina reguliariai duomenis, kad matytu patirties ar maisto pokyti

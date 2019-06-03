@@ -7,6 +7,7 @@
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZemelapi.h" 
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zaidejoValdymas.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h" 
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\misijos\misijos.h"
 
 using namespace std;
 
@@ -15,8 +16,7 @@ int main() {
     char temp, temp1 = '.';
     //zemelapio dydis ir kintamieji jam prisiminti
     char zemelapis[30][120];
-    int zemPlotis = 120;
-    int zemAukstis = 30;
+    int zemPlotis = 120, zemAukstis = 30;
     //pagrindinio meniu pradzia
     bool procVeikia = true;
     int pagrMeniu = -1;
@@ -32,7 +32,7 @@ int main() {
             }
             case 1: {     
                 //kintamieji laikantys koordinates pagrindiniu zemelapio objektu, taip pat zaidejo numeris (pagal uzsaugota zaidima)               
-                int xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], nr;
+                int xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], nr, kuriMisija = 0;
                 //issaugotu zaideju sarasas ir vietos pasirinkimas
                 atspausdintiIssaugotus();
                 zaidimoSaugojimas(nr);
@@ -72,7 +72,7 @@ int main() {
                         }
                         case 1: {
                             //vaiksciojimo po zemelapi procesas
-                            zaidejoValdymas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1);
+                            zaidejoValdymas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija);
                             break;
                         }
                         case 2: {
@@ -87,7 +87,7 @@ int main() {
                             break;
                         }
                         case 4: {
-
+                            atspausdintiMisijosTiksla(kuriMisija);
                             break;
                         }
                         default: {

@@ -4,7 +4,6 @@
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\daiktai\daiktuStrukturos.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\misijos\banditas.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\priesai\kova.h"
 
 //atspausdina valdymo nustatymus 
@@ -19,7 +18,7 @@ void valdymoPaaiskinimas1() { //TODO: tureti viena paaiskinima, kazkuris kitas h
 //nuolatos tikrina ar zaidejas atsistojo ant zemelapio objekto, kaip miestas ar dungeonas, jeigu taip - atidaro meniu
 void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int nr, int dungKord[30]) {
     int rinktis, rinktis1, kiekis;
-    bool lankosi = true, lankosi1 = true, sveikinimas = true, sekmingai = false;
+    bool lankosi = true, lankosi1 = true, sveikinimas = true, sekmingai = false, pralaimejoMisija;
     while (lankosi == true) {
         while (xZaid == xMiest && yZaid == yMiest && lankosi1 == true) {
             if (sveikinimas == true) {
@@ -29,7 +28,6 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
             cout << "0. ISEITI."
                     "\n1. PIRKTI."
                     "\n2. PARDUOTI."
-                    "\n3. MISIJA."
                     "\n\nPASIRINKITE VEIKSMA: ";
             cin >> rinktis;
             switch(rinktis) {
@@ -295,7 +293,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         break;
                     }
                     case 1: {
-                        kova(nr);
+                        kova(nr, pralaimejoMisija);
                         break;
                     }
                     default: {

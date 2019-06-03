@@ -32,7 +32,7 @@ void spausdintiPriesoDuomenis() {
 void sugeneruotiPriesa(int nr, int &priesoTipas) {
     //1 - zombis, 2 - zmogus
     sansoKauliukas(priesoTipas, 1, 1); //FIXME: pakeist kai pridesi zmogu priesa
-    if (priesoTipas == 1) {
+    if (priesoTipas == 1) { //TODO: padaryti geresni damage, siaip skaicius patvarkyt
         priesas.gyvybe = 50;
         priesas.sarvai = zaidDuom[nr].def;
         priesas.puolimas = zaidDuom[nr].atk + (zaidDuom[nr].sunkumas * 5);
@@ -49,7 +49,7 @@ void sugeneruotiPriesa(int nr, int &priesoTipas) {
         priesas.duosAukso = priesas.puolimas * 5;
     }
 }
-void zombisPuola(int nr, bool &kovaVyksta, int pataikymoSansas, bool &skydasPakeltas) {
+void zombisPuola(int nr, bool &kovaVyksta, int pataikymoSansas, bool &skydasPakeltas, bool &pralaimejoMisija) {
     if (skydasPakeltas == false) {
         cout << "\nZOMBIS JUMS IKANDO!\n";
         zaidDuom[nr].hp = zaidDuom[nr].hp - (priesas.puolimas - (zaidDuom[nr].def * 0.1));
@@ -66,6 +66,7 @@ void zombisPuola(int nr, bool &kovaVyksta, int pataikymoSansas, bool &skydasPake
     }
     if (zaidDuom[nr].hp <= 0) {
         cout << "\nPRALAIMEJOME, BET NEPAZYSTAMASIS UZ 200 AUKSO JUMS ISGELBEJO GYVYBE!\n";
+        pralaimejoMisija = true;
         zaidDuom[nr].hp == 20;
         zaidDuom[nr].gold -= 200;
         kovaVyksta = false;
@@ -111,7 +112,7 @@ void lobis(int nr) {
         }
     }
 }
-void kova(int nr) {
+void kova(int nr, bool &pralaimejoMisija) {
     int priesoTipas, pataikymoSansas;
     bool kovaVyksta = true, skydasPakeltas = false;
     sugeneruotiPriesa(nr, priesoTipas);
@@ -125,18 +126,21 @@ void kova(int nr) {
         cout << "\n0. BEGTI."
                 "\n1. ATAKUOTI."
                 "\n2. PAKELTI SKYDA."
-                "\n3. SUTRYGDYTI.\n\n"
+                "\n3. SUTRYGDYTI."
+                "\n4. GYVYBES ELIKSYRAS.\n\n";
                 "PASIRINKITE VEIKSMA: ";
         cin >> kovosVeiksmai;
         switch (kovosVeiksmai) {
             case 0: {
                 cout << "\nPABEGOTE IS KOVOS!\n";
+                valdymoPaaiskinimas2();
+                pralaimejoMisija = true;
                 kovaVyksta = false;
                 break;
             }
             case 1: {
                 if (priesoTipas == 1) {
-                    zombisPuola(nr, kovaVyksta, pataikymoSansas, skydasPakeltas);
+                    zombisPuola(nr, kovaVyksta, pataikymoSansas, skydasPakeltas, pralaimejoMisija);
                     if (kovaVyksta == true) {
                         cout << "JUS PATAIKETE I ZOMBI SU KARDU!\n";
                         priesas.gyvybe = priesas.gyvybe - zaidDuom[nr].atk;
@@ -165,7 +169,24 @@ void kova(int nr) {
                 break;
             }
             case 3: {
-
+                if (priesoTipas == 1) cout << "\nZOMBIO INIRSIS NESUVALDOMAS, JUSU MEGINIMAI SUTRYGDYTI NESEKMINGI!\n";
+                break;
+            }
+            case 4: {
+                if (potion.kiekis > 0) {
+                    zaidDuom[nr].hp += potion.hp;
+                    if (zaidDuom[nr].hp > (100 + lygis.pliusGyvybe)) zaidDuom[nr].hp = 100 + lygis.pliusGyvybe;
+                    potion.kiekis -= 1;
+                    if (potion.kiekis == 0) {
+                        for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) {
+                            if (zaidInv[nr].pav == "GYVYBES POTION") zaidInv[nr].pav = "-";
+                        }
+                    }
+                    cout << "\nSEKMINGAI PANAUDOJOTE GYVYBES ELEKSYRA (+25 GYVYBES).\n";
+                }
+                else {
+                    cout << "\nNETURITE GYVYBES ELIKSYRU!\n";
+                }
                 break;
             }
             default: {

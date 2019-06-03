@@ -5,6 +5,7 @@
 
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejasSuObjektu.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\misijos\misijos.h"
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -19,7 +20,7 @@ void valdymoPaaiskinimas() {
             "\nDESINE - JUDETI I DESINE." //FIXME: zemPlotis ir zemAukstis gal nereikalingi, galim naudot sizeof
             "\nSPACE - VALDYMAS.\n";
 }
-void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1) {
+void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1, int kuriMisija) {
     bool zaidVaiksto = true, pirmEjimas = true, naujinti = false;
     int bind;
     valdymoPaaiskinimas();
@@ -108,6 +109,7 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
             zaidejoDuomenys(nr, naujinti);
             zaidejoDuomenuSpausdinimas(nr);
             pasikeleLygi(nr);
+            misija(kuriMisija, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, nr, dungKord);
             zaidejasSuObjektu(zemelapis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, nr, dungKord);
             naujinti = false;
         }

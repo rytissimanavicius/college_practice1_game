@@ -9,6 +9,7 @@
 
 using namespace std;
 
+//inventorius (10 vietu) laiko daikto varda ir tipa, pagal juos vyksta paieskos ir t.t.
 struct zaidInv {
     string pav = "-";
     string tipas = "-";
@@ -20,15 +21,18 @@ void zaidejoInventoriusSpausdinimas(int nr) {
         if (zaidInv[i].tipas == "sarvai") cout << " (GYNYBA: " << zaidDuom[nr].def << ")";
         if (zaidInv[i].tipas == "kardas") cout << " (PUOLIMAS: " << zaidDuom[nr].atk << ")";
         if (zaidInv[i].tipas == "skydas") cout << " (BLOKO SANSAS: " << zaidDuom[nr].shield << "%)";
-        if (zaidInv[i].tipas == "gyvybe") cout << " (KIEKIS: " << potion.kiekis << ")";
+        if (zaidInv[i].pav == "GYVYBES POTION") cout << " (KIEKIS: " << potion.kiekis << ")";
+        if (zaidInv[i].pav == "BRANGAKMENIAI") cout << " (VERTE: " << brangakmeniai.verte << ")";
         cout << "\n";
     }
 }
+//pagal uzdetus daiktus atnaujinti zaidejo duomenis
 void atnaujintiZaidejoDuomenis(int nr, int duomenys, int daiktoVieta) {
     if (daiktoVieta == 0) zaidDuom[nr].def = duomenys;
     else if (daiktoVieta == 1) zaidDuom[nr].atk = duomenys;
     else zaidDuom[nr].shield = duomenys;
 }
+//meniu pasirinkus inventoriu, si funkcija leidzia turimus daiktus perziureti, sukeisti vietomis
 void zaidejoInventoriausFunkcijos(int nr) {
     int pasirinkimas;
     cout << "\n0. GRIZTI."
@@ -43,9 +47,7 @@ void zaidejoInventoriausFunkcijos(int nr) {
         cout << "PASIRINKITE DAIKTA SU KURIUO SUKEISITE: ";
         cin >> antras;
         if (pirmas == 1 && (zaidInv[antras - 1].tipas == "sarvai" || zaidInv[antras - 1].tipas == "-")) {
-            swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
-            swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
-            if (zaidInv[antras - 1].tipas == "sarvai") { //TODO: jeigu veiks visur
+            if (zaidInv[antras - 1].tipas == "sarvai") {
                 for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) {
                     if (zaidInv[antras - 1].pav == sarvai[i].pav) {
                         atnaujintiZaidejoDuomenis(nr, sarvai[i].gynyba, 0);
@@ -53,24 +55,72 @@ void zaidejoInventoriausFunkcijos(int nr) {
                     }
                 }
             }
+            else atnaujintiZaidejoDuomenis(nr, 0, 0);
+            swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
+            swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
         }
         else if (pirmas == 2 && (zaidInv[antras - 1].tipas == "kardas" || zaidInv[antras - 1].tipas == "-")) {
+            if (zaidInv[antras - 1].tipas == "kardas") {
+                for (int i = 0; i < sizeof kardas / sizeof kardas[0]; i++) {
+                    if (zaidInv[antras - 1].pav == kardas[i].pav) {
+                        atnaujintiZaidejoDuomenis(nr, kardas[i].puolimas, 1);
+                        break;
+                    }
+                }
+            }
+            else atnaujintiZaidejoDuomenis(nr, 10, 1);
             swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
             swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
         }
         else if (pirmas == 3 && (zaidInv[antras - 1].tipas == "skydas" || zaidInv[antras - 1].tipas == "-")) {
+            if (zaidInv[antras - 1].tipas == "skydas") {
+                for (int i = 0; i < sizeof skydas / sizeof skydas[0]; i++) {
+                    if (zaidInv[antras - 1].pav == skydas[i].pav) {
+                        atnaujintiZaidejoDuomenis(nr, skydas[i].sansas, 2);
+                        break;
+                    }
+                }
+            }
+            else atnaujintiZaidejoDuomenis(nr, 0, 2);
             swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
             swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
         }
         else if (antras == 1 && (zaidInv[pirmas - 1].tipas == "sarvai" || zaidInv[pirmas - 1].tipas == "-")) {
+            if (zaidInv[pirmas - 1].tipas == "sarvai") {
+                for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) {
+                    if (zaidInv[pirmas - 1].pav == sarvai[i].pav) {
+                        atnaujintiZaidejoDuomenis(nr, sarvai[i].gynyba, 0);
+                        break;
+                    }
+                }
+            }
+            else atnaujintiZaidejoDuomenis(nr, 0, 0);
             swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
             swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
         }
         else if (antras == 2 && (zaidInv[pirmas - 1].tipas == "kardas" || zaidInv[pirmas - 1].tipas == "-")) {
+            if (zaidInv[pirmas - 1].tipas == "kardas") {
+                for (int i = 0; i < sizeof kardas / sizeof kardas[0]; i++) {
+                    if (zaidInv[pirmas - 1].pav == kardas[i].pav) {
+                        atnaujintiZaidejoDuomenis(nr, kardas[i].puolimas, 1);
+                        break;
+                    }
+                }
+            }
+            else atnaujintiZaidejoDuomenis(nr, 10, 1);
             swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
             swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
         }
         else if (antras == 3 && (zaidInv[pirmas - 1].tipas == "skydas" || zaidInv[pirmas - 1].tipas == "-")) {
+            if (zaidInv[pirmas - 1].tipas == "skydas") {
+                for (int i = 0; i < sizeof skydas / sizeof skydas[0]; i++) {
+                    if (zaidInv[pirmas - 1].pav == skydas[i].pav) {
+                        atnaujintiZaidejoDuomenis(nr, skydas[i].sansas, 2);
+                        break;
+                    }
+                }
+            }
+            else atnaujintiZaidejoDuomenis(nr, 0, 2);
             swap(zaidInv[pirmas - 1].pav, zaidInv[antras - 1].pav);
             swap(zaidInv[pirmas - 1].tipas, zaidInv[antras - 1].tipas);
         }
@@ -83,6 +133,7 @@ void zaidejoInventoriausFunkcijos(int nr) {
         }
     }
 }
+//sarvu duomenis kaip gynyba priskirs zaidejo duomenims, sarvu masyve uzsaugos pilnus sarvu duomenis, inventoriuje ides juos pagal varda
 void uzdetiSarvus(int nr, string irangosPav, int duomenys) {
     for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) {
         if (sarvai[i].pav == "-") {
@@ -95,6 +146,7 @@ void uzdetiSarvus(int nr, string irangosPav, int duomenys) {
         }
     }
 }
+//kardu duomenis kaip puolima priskirs zaidejo duomenims, kardu masyve uzsaugos pilnus kardo duomenis, inventoriuje ides juos pagal varda
 void uzdetiKarda(int nr, string irangosPav, int duomenys) {
     for (int i = 0; i < sizeof kardas / sizeof kardas[0]; i++) {
         if (kardas[i].pav == "-") {
@@ -107,6 +159,7 @@ void uzdetiKarda(int nr, string irangosPav, int duomenys) {
         }
     }
 }
+//skydo duomenis kaip apsigynimo sansa priskirs zaidejo duomenims, skydu masyve uzsaugos pilnus skydo duomenis, inventoriuje ides juos pagal varda
 void uzdetiSkyda(int nr, string irangosPav, int duomenys) {
     for (int i = 0; i < sizeof skydas / sizeof skydas[0]; i++) {
         if (skydas[i].pav == "-") {
@@ -119,7 +172,7 @@ void uzdetiSkyda(int nr, string irangosPav, int duomenys) {
         }
     }
 }
-
+//sukurus nauja veikeja duos pagrindinius daiktus, daiktams suteiks atsitiktini varda
 void duotiPradineIranga(int nr) {
     int pavadinimas;
     string irangosPav;

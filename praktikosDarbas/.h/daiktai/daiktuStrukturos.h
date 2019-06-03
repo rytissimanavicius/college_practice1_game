@@ -18,9 +18,14 @@ struct skydas {
 } skydas[100];
 struct potion {       
     string pav = "GYVYBES POTION";
+    int verteMieste = 150;
+    int verteKaime = 100;
     int kiekis = 0;
     int hp = 25;
-    const string tipas = "gyvybe";
 } potion;
+struct brangakmeniai {       
+    string pav = "BRANGAKMENIAI";
+    int verte = 250;
+} brangakmeniai;
 
 #endif

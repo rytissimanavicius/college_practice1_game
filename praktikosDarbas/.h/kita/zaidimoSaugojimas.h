@@ -12,17 +12,17 @@ void atspausdintiIssaugotus() {
     for (int i = 0; i < sizeof zaidSaug / sizeof zaidSaug[0]; i++) { //FIXME: pradeti sizeof naudoti visur
         cout << "\n" << i + 1 << ". " << zaidSaug[i].saugoti;
     }
+    cout << "\n";
 }
-void zaidimoSaugojimas() {
-    int vieta;
+void zaidimoSaugojimas(int &nr) {
     cout << "\n\nPASIRINKITE SAUGOJIMO VIETA: ";
-    cin >> vieta;
-    while (vieta < 1 || vieta > 5 || zaidSaug[vieta - 1].laisva == false) {
+    cin >> nr;
+    while (nr < 1 || nr > 5 || zaidSaug[nr - 1].laisva == false) {
         cout << "PASIRINKITE SAUGOJIMO VIETA: ";
-        cin >> vieta;
+        cin >> nr;
     }
-    zaidSaug[vieta - 1].laisva == false;
+    zaidSaug[nr - 1].laisva == false;
     cout << "PASIRINKITE SAUGOJIMO PAVADINIMA: ";
-    cin >> zaidSaug[vieta - 1].saugoti; 
+    cin >> zaidSaug[nr - 1].saugoti; 
 }
 #endif

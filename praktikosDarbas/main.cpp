@@ -1,12 +1,12 @@
 #include <iostream>
 
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zemelapioObjektuGeneravimas.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\zaidimoSaugojimas.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZaidejoMatomuma.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZemelapi.h" 
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zaidejoValdymas.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h" 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
 
 using namespace std;
 
@@ -31,14 +31,11 @@ int main() {
                 exit(0);
             }
             case 1: {     
-                //kintamieji ir masyvai skirti pagrindiniams pasaulio objektams prisiminti                    
-                int xZaid, yZaid;
-                int xMiest, yMiest;
-                int xKaim, yKaim;
-                int dungKord[30], nr = 0;
+                //kintamieji laikantys koordinates pagrindiniu zemelapio objektu, taip pat zaidejo numeris (pagal uzsaugota zaidima)               
+                int xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], nr;
                 //issaugotu zaideju sarasas ir vietos pasirinkimas
                 atspausdintiIssaugotus();
-                zaidimoSaugojimas();
+                zaidimoSaugojimas(nr);
                 //zaidejo kurimas
                 cout << "\nIVESKITE ZAIDEJO VARDA: ";
                 cin >> zaidDuom[nr].vardas;

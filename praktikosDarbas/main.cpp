@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zemelapioObjektuGeneravimas.h"
@@ -12,6 +13,14 @@
 using namespace std;
 
 int main() {
+    string zaidSaug[5];
+    ifstream uzsaugotiZaidimai(".txt/uzsaugotiZaidimai.txt");
+    if (uzsaugotiZaidimai.is_open()) {
+        for (int j = 0; j < sizeof zaidSaug / sizeof zaidSaug[0]; j++) { 
+            uzsaugotiZaidimai >> zaidSaug[j];
+            cout << zaidSaug[j];
+        }
+    }
     //skirti atsiminti objektams zemelapi vaikstant, deklaruoti cia tam, kad isejus is vaiksciojimo rezimo esant mieste atsimintu, kad ten stovejo miestas
     char temp, temp1 = '.';
     //zemelapio dydis ir kintamieji jam prisiminti
@@ -22,7 +31,7 @@ int main() {
     int pagrMeniu = -1;
     cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
             "1 - PRADETI NAUJA ZAIDIMA.\n"
-            "2 - ISSAUGOTI ZAIDIMAI.\n";
+            "2 - PAKRAUTI ISSAUGOTA ZAIDIMA.\n";
     while (procVeikia == true) {
         cout << "\nPASIRINKITE MENU PUNKTA: ";
         cin >> pagrMeniu;
@@ -35,17 +44,10 @@ int main() {
                 int xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], nr, kuriMisija = 0;
                 //issaugotu zaideju sarasas ir vietos pasirinkimas
                 atspausdintiIssaugotus();
-                zaidimoSaugojimas(nr);
-                //zaidejo kurimas //TODO: patikrins uzsaugotu zaidimu .txt, jeigu 5 pavadinimai = 5 uzimti slotai, kiti .txt failai laikis konkreciu slotu info ar i ja irasis
+                sukurtiNauja(nr, zaidSaug);
+                //TODO: patikrins uzsaugotu zaidimu .txt, jeigu 5 pavadinimai = 5 uzimti slotai, kiti .txt failai laikis konkreciu slotu info ar i ja irasis
                 
-                cout << "\nIVESKITE ZAIDEJO VARDA: ";
-                cin >> zaidDuom[nr].vardas;
-                cout << "IVESKITE SUNKUMO LYGI: ";
-                cin >> zaidDuom[nr].sunkumas;
-                if (zaidDuom[nr].sunkumas < 1 && zaidDuom[nr].sunkumas > 3) {
-                    cout << "IVESKITE SUNKUMO LYGI: ";
-                    cin >> zaidDuom[nr].sunkumas;
-                }
+                
                 //generavimo progreso atvaizdavimas
                 cout << "\nPASAULIS GENERUOJAMAS...\n"; //TODO: pademonstruoti krovima
                 //sudeda objektus, nustato matymo zonas ir vaizduoja zemelapi

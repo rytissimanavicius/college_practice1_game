@@ -36,7 +36,8 @@ int main() {
                 //issaugotu zaideju sarasas ir vietos pasirinkimas
                 atspausdintiIssaugotus();
                 zaidimoSaugojimas(nr);
-                //zaidejo kurimas
+                //zaidejo kurimas //TODO: patikrins uzsaugotu zaidimu .txt, jeigu 5 pavadinimai = 5 uzimti slotai, kiti .txt failai laikis konkreciu slotu info ar i ja irasis
+                
                 cout << "\nIVESKITE ZAIDEJO VARDA: ";
                 cin >> zaidDuom[nr].vardas;
                 cout << "IVESKITE SUNKUMO LYGI: ";
@@ -66,7 +67,9 @@ int main() {
                     cin >> zaidMenu;
                     switch(zaidMenu) {
                         case 0: {
-                            //gris i pagrindini meniu
+                            cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
+                                    "1 - PRADETI NAUJA ZAIDIMA.\n"
+                                    "2 - ISSAUGOTI ZAIDIMAI.\n";
                             zaidVeikia = false;
                             break;
                         }

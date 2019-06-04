@@ -18,13 +18,14 @@ void zaidejoInventoriusSpausdinimas(int nr) {
     cout << "\nINVENTORIUS:\n";
     for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) {
         cout << i + 1 << ". " << zaidInv[i].pav;
-        if (zaidInv[i].tipas == "sarvai") cout << " (GYNYBA: " << zaidDuom[nr].def << ")";
-        if (zaidInv[i].tipas == "kardas") cout << " (PUOLIMAS: " << zaidDuom[nr].atk << ")";
-        if (zaidInv[i].tipas == "skydas") cout << " (BLOKO SANSAS: " << zaidDuom[nr].shield << "%)";
+        if (i == 0) cout << " (GYNYBA: " << zaidDuom[nr].def << ")";
+        if (i == 1) cout << " (PUOLIMAS: " << zaidDuom[nr].atk << ")";
+        if (i == 2) cout << " (BLOKO SANSAS: " << zaidDuom[nr].shield << "%)";
         if (zaidInv[i].pav == "GYVYBES POTION") cout << " (KIEKIS: " << potion.kiekis << ")";
         if (zaidInv[i].pav == "BRANGAKMENIAI") cout << " (VERTE: " << brangakmeniai.verte << ")";
         cout << "\n";
     }
+    cout << "\n";
 }
 //pagal uzdetus daiktus atnaujinti zaidejo duomenis
 void atnaujintiZaidejoDuomenis(int nr, int duomenys, int daiktoVieta) {
@@ -35,7 +36,7 @@ void atnaujintiZaidejoDuomenis(int nr, int duomenys, int daiktoVieta) {
 //meniu pasirinkus inventoriu, si funkcija leidzia turimus daiktus perziureti, sukeisti vietomis
 void zaidejoInventoriausFunkcijos(int nr) {
     int pasirinkimas;
-    cout << "\n0. GRIZTI."
+    cout << "0. GRIZTI."
             "\n1. SUKEISTI DAIKTUS"
             "\n\nPASIRINKITE VEIKSMA: ";
     cin >> pasirinkimas;
@@ -135,7 +136,7 @@ void zaidejoInventoriausFunkcijos(int nr) {
 }
 //sarvu duomenis kaip gynyba priskirs zaidejo duomenims, sarvu masyve uzsaugos pilnus sarvu duomenis, inventoriuje ides juos pagal varda
 void uzdetiSarvus(int nr, string irangosPav, int duomenys) {
-    for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) {
+    for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) { //FIXME: nemanau, kad reikia atskiru funkciju uzdet pradine irangai, vistiek paskui nenaudoju
         if (sarvai[i].pav == "-") {
             sarvai[i].pav = irangosPav + " SARVAI";
             sarvai[i].gynyba = duomenys;
@@ -173,7 +174,7 @@ void uzdetiSkyda(int nr, string irangosPav, int duomenys) {
     }
 }
 //sukurus nauja veikeja duos pagrindinius daiktus, daiktams suteiks atsitiktini varda
-void duotiPradineIranga(int nr) {
+void duotiPradineIranga(int nr) { //TODO: dublikuojancius kintamus ir t.t. gal i viena sujungt
     int pavadinimas;
     string irangosPav;
     string mas[1000];
@@ -190,6 +191,9 @@ void duotiPradineIranga(int nr) {
         if (i == 1) uzdetiKarda(nr, irangosPav, 20);
         if (i == 2) uzdetiSkyda(nr, irangosPav, 50);
     }
+}
+void sugeneruotiIranga() {
+    
 }
 
 #endif

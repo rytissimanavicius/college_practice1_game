@@ -20,7 +20,7 @@ void valdymoPaaiskinimas() {
             "\nDESINE - JUDETI I DESINE." //FIXME: zemPlotis ir zemAukstis gal nereikalingi, galim naudot sizeof
             "\nSPACE - VALDYMAS.\n";
 }
-void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1, int kuriMisija) {
+void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1, int &kuriMisija) {
     bool zaidVaiksto = true, pirmEjimas = true, naujinti = false;
     int bind;
     valdymoPaaiskinimas();

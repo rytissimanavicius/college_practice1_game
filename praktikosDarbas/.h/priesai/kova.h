@@ -30,9 +30,8 @@ void spausdintiPriesoDuomenis() {
     cout << "\nPRIESO DUOMENYS:\nGYVYBE: " << priesas.gyvybe << "\nSARVAI: " << priesas.sarvai << "\nPUOLIMAS: " << priesas.puolimas << "\nSKYDAS: " << priesas.skydas << "%\n";
 }
 void sugeneruotiPriesa(int nr, int &priesoTipas) {
-    //1 - zombis, 2 - zmogus
-    sansoKauliukas(priesoTipas, 1, 1); //FIXME: pakeist kai pridesi zmogu priesa
-    if (priesoTipas == 1) { //TODO: padaryti geresni damage, siaip skaicius patvarkyt
+    sansoKauliukas(priesoTipas, 1, 1);
+    if (priesoTipas == 1) {
         priesas.gyvybe = 50;
         priesas.sarvai = zaidDuom[nr].def;
         priesas.puolimas = zaidDuom[nr].atk + (zaidDuom[nr].sunkumas * 5);
@@ -41,12 +40,7 @@ void sugeneruotiPriesa(int nr, int &priesoTipas) {
         priesas.duosAukso = priesas.puolimas * 2;
     }
     else if (priesoTipas == 2) {
-        priesas.gyvybe = 100;
-        priesas.sarvai = zaidDuom[nr].def;
-        priesas.puolimas = zaidDuom[nr].atk + (zaidDuom[nr].sunkumas * 5);
-        priesas.skydas = zaidDuom[nr].shield;
-        priesas.duosXp = priesas.sarvai + priesas.gyvybe;
-        priesas.duosAukso = priesas.puolimas * 5;
+        //TODO: 2 yra zmogus, bet nebutina ji sukurt, patobulink kova su zombiais 
     }
 }
 void zombisPuola(int nr, bool &kovaVyksta, int pataikymoSansas, bool &skydasPakeltas, bool &pralaimejoMisija) {
@@ -169,7 +163,7 @@ void kova(int nr, bool &pralaimejoMisija) {
                 break;
             }
             case 3: {
-                if (priesoTipas == 1) cout << "\nZOMBIO INIRSIS NESUVALDOMAS, JUSU MEGINIMAI SUTRYGDYTI NESEKMINGI!\n";
+                if (priesoTipas == 1) cout << "\nZOMBIO INIRSIS NESUVALDOMAS, JUSU MEGINIMAI SUTRYGDYTI NESEKMINGI!\n"; //TODO: dadeti mechanika, ar daugiau net
                 break;
             }
             case 4: {

@@ -16,7 +16,7 @@ struct zaidDuom {
     int xp = 0; 
     int lvl = 0; 
     int gold = 500;
-    int maistas = 200;
+    int maistas = 19;
 } zaidDuom[5];
 //esant tam tikram lygiui sie bonusai prisides prie pagrindiniu zaidejo duomenu
 struct lygis {
@@ -29,15 +29,15 @@ void zaidejoDuomenys(int nr, bool naujinti) {
         zaidDuom[nr].xp += 5;
         if (zaidDuom[nr].maistas > 0) zaidDuom[nr].maistas -= 2;
         if (zaidDuom[nr].maistas <= 0) {
-            cout << "\nJUMS BAIGESI MAISTAS, PO MAZU PRARANDATE GYVYBES!\n";
+            cout << "JUMS BAIGESI MAISTAS, PO MAZU PRARANDATE GYVYBES!\n\n";
+            zaidDuom[nr].maistas = 0;
             zaidDuom[nr].hp -= 2;
         }
-        if (zaidDuom[nr].hp < (100 + lygis.pliusGyvybe)) {
+        else if (zaidDuom[nr].hp < (100 + lygis.pliusGyvybe)) {
             zaidDuom[nr].maistas -= 1;
             zaidDuom[nr].hp += 2;
             if (zaidDuom[nr].hp > (100 + lygis.pliusGyvybe)) zaidDuom[nr].hp = 100 + lygis.pliusGyvybe;
         }
-        if (zaidDuom[nr].maistas < 0) zaidDuom[nr].maistas == 0;
     }
 }
 //judant zemelapiu spausdina reguliariai duomenis, kad matytu patirties ar maisto pokyti

@@ -6,9 +6,8 @@
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\zaidimoSaugojimas.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZaidejoMatomuma.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZemelapi.h" 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zaidejoValdymas.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h" 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\misijos\misijos.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\zaidimoMeniu.h"
 
 using namespace std;
 
@@ -20,12 +19,9 @@ int main() {
             uzsaugotiZaidimai >> zaidSaug[j];
         }
     }
-    //skirti atsiminti objektams zemelapi vaikstant, deklaruoti cia tam, kad isejus is vaiksciojimo rezimo esant mieste atsimintu, kad ten stovejo miestas
     char temp, temp1 = '.';
-    //zemelapio dydis ir kintamieji jam prisiminti
     char zemelapis[30][120];
-    int zemPlotis = 120, zemAukstis = 30;
-    //pagrindinio meniu pradzia
+    int zemPlotis = 120, zemAukstis = 30, nr, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], kuriMisija = 0;
     bool procVeikia = true;
     int pagrMeniu = -1;
     cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
@@ -39,80 +35,56 @@ int main() {
                 exit(0);
             }
             case 1: {     
-                //kintamieji laikantys koordinates pagrindiniu zemelapio objektu, taip pat zaidejo numeris (pagal uzsaugota zaidima)               
-                int xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], nr, kuriMisija = 0;
-                //issaugotu zaideju sarasas ir vietos pasirinkimas
                 atspausdintiIssaugotus(zaidSaug);
-
-                int hiy;
-                cout << "ya";
-                cin >> hiy;
-
-
-
-
                 sukurtiNauja(nr, zaidSaug);
-                //TODO: patikrins uzsaugotu zaidimu .txt, jeigu 5 pavadinimai = 5 uzimti slotai, kiti .txt failai laikis konkreciu slotu info ar i ja irasis
-                
-                
-                //generavimo progreso atvaizdavimas
-                cout << "\nPASAULIS GENERUOJAMAS...\n"; //TODO: pademonstruoti krovima
-                //sudeda objektus, nustato matymo zonas ir vaizduoja zemelapi
+                cout << "\nPASAULIS GENERUOJAMAS...\n";
                 zemelapioObjektuGeneravimas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord);
                 atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                 atnaujintiZemelapi(zemelapis, zemPlotis, zemAukstis);
-                //priskiria pradinius daiktus
                 duotiPradineIranga(nr);
-                //zaidimo meniu pradzia
-                bool zaidVeikia = true;
-                int zaidMenu = -1;
-                while (zaidVeikia == true) {
-                    cout << "\n0 - ISEITI IS ZAIDIMO (UZSAUGOTI).\n"
-                            "1 - JUDETI ZEMELAPYJE.\n"
-                            "2 - INVENTORIUS.\n"
-                            "3 - DUOMENYS.\n"
-                            "4 - AKTYVIOS MISIJOS\n"
-                            "\nPASIRINKITE VEIKSMA: ";             
-                    cin >> zaidMenu;
-                    switch(zaidMenu) {
-                        case 0: {
-                            saugojimas(nr, zemelapis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord);
-                            cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
-                                    "1 - PRADETI NAUJA ZAIDIMA.\n"
-                                    "2 - ISSAUGOTI ZAIDIMAI.\n";
-                            zaidVeikia = false;
-                            break;
-                        }
-                        case 1: {
-                            //vaiksciojimo po zemelapi procesas
-                            zaidejoValdymas(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija);
-                            break;
-                        }
-                        case 2: {
-                            zaidejoInventoriusSpausdinimas(nr);
-                            zaidejoInventoriausFunkcijos(nr);
-                            break;
-                        }
-                        case 3: {
-                            cout << "\n";
-                            zaidejoDuomenuSpausdinimas(nr);
-                            cout << "\n";
-                            break;
-                        }
-                        case 4: {
-                            atspausdintiMisijosTiksla(kuriMisija);
-                            break;
-                        }
-                        default: {
-                            cout << "\nSIS MENU PUNKTAS NEEGZISTUOJA, PASIRINKITE IS NAUJO!";
-                            break;
-                        }
-                    }
-                }
+                zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija);
                 break;
             }
             case 2: {
                 atspausdintiIssaugotus(zaidSaug);
+                cout << "\nPASIRINKITE ISSAUGOTA: ";
+                cin >> nr;
+                if (nr - 1 == 0) {
+                    ifstream pirmas(".txt/saugojimoVieta_1.txt");
+                    if (pirmas.is_open()) {
+                        for (int i = 0; i < 30; i++) {
+                            for (int j = 0; j < 120; j++) {
+                                pirmas >> zemelapis[i][j];
+                            }
+                        }
+                        pirmas >> zemPlotis;
+                        pirmas >> zemAukstis;
+                        pirmas >> xZaid;
+                        pirmas >> yZaid;
+                        pirmas >> xMiest;
+                        pirmas >> yMiest;
+                        pirmas >> xKaim;
+                        pirmas >> yKaim;
+                        pirmas >> temp;
+                        pirmas >> temp1;
+                        pirmas >> kuriMisija;
+                        for (int i = 0; i < 30; i++) {
+                            pirmas >> dungKord[i];
+                        }
+                        pirmas >> zaidDuom[nr].vardas;
+                        pirmas >> zaidDuom[nr].sunkumas;
+                        pirmas >> zaidDuom[nr].hp;
+                        pirmas >> zaidDuom[nr].def;
+                        pirmas >> zaidDuom[nr].atk;
+                        pirmas >> zaidDuom[nr].shield;
+                        pirmas >> zaidDuom[nr].xp;
+                        pirmas >> zaidDuom[nr].lvl;
+                        pirmas >> zaidDuom[nr].gold;
+                        pirmas >> zaidDuom[nr].maistas;
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija);
+                    }
+                }
+                
                 break;
             }
             default: {

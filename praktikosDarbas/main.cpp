@@ -18,7 +18,6 @@ int main() {
     if (uzsaugotiZaidimai.is_open()) {
         for (int j = 0; j < sizeof zaidSaug / sizeof zaidSaug[0]; j++) { 
             uzsaugotiZaidimai >> zaidSaug[j];
-            cout << zaidSaug[j];
         }
     }
     //skirti atsiminti objektams zemelapi vaikstant, deklaruoti cia tam, kad isejus is vaiksciojimo rezimo esant mieste atsimintu, kad ten stovejo miestas
@@ -43,7 +42,15 @@ int main() {
                 //kintamieji laikantys koordinates pagrindiniu zemelapio objektu, taip pat zaidejo numeris (pagal uzsaugota zaidima)               
                 int xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], nr, kuriMisija = 0;
                 //issaugotu zaideju sarasas ir vietos pasirinkimas
-                atspausdintiIssaugotus();
+                atspausdintiIssaugotus(zaidSaug);
+
+                int hiy;
+                cout << "ya";
+                cin >> hiy;
+
+
+
+
                 sukurtiNauja(nr, zaidSaug);
                 //TODO: patikrins uzsaugotu zaidimu .txt, jeigu 5 pavadinimai = 5 uzimti slotai, kiti .txt failai laikis konkreciu slotu info ar i ja irasis
                 
@@ -60,7 +67,7 @@ int main() {
                 bool zaidVeikia = true;
                 int zaidMenu = -1;
                 while (zaidVeikia == true) {
-                    cout << "\n0 - ISEITI IS ZAIDIMO.\n"
+                    cout << "\n0 - ISEITI IS ZAIDIMO (UZSAUGOTI).\n"
                             "1 - JUDETI ZEMELAPYJE.\n"
                             "2 - INVENTORIUS.\n"
                             "3 - DUOMENYS.\n"
@@ -69,6 +76,7 @@ int main() {
                     cin >> zaidMenu;
                     switch(zaidMenu) {
                         case 0: {
+                            saugojimas(nr, zemelapis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord);
                             cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
                                     "1 - PRADETI NAUJA ZAIDIMA.\n"
                                     "2 - ISSAUGOTI ZAIDIMAI.\n";
@@ -104,7 +112,7 @@ int main() {
                 break;
             }
             case 2: {
-                atspausdintiIssaugotus();
+                atspausdintiIssaugotus(zaidSaug);
                 break;
             }
             default: {

@@ -1,2 +1,1 @@
-
-            "1 - PRADETI NAUJA ZAIDIMA.\n"
+P

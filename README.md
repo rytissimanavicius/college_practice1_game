@@ -1,4 +1,4 @@
-Apie žaidimą "":
+Apie žaidimą "KOMPANIJA":
 
 1. Pradėjus žaidimą pasaulis yra atsitiktinai sugeneruojamas, žaidėjas gali juo judėti naudojant rodykles.
 2. Pasaulyje yra miestas, kaimas, 15 priešų vietovių ir pats žaidėjas. Aplankyti šias vietoves žaidėjas gali ant jų vietos atsistojęs.

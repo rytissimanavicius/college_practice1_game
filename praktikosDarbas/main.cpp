@@ -2,20 +2,20 @@
 #include <fstream>
 #include <windows.h>
 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\pasaulis\zemelapioObjektuGeneravimas.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\kita\zaidimoSaugojimas.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\pasaulis\atnaujintiZaidejoMatomuma.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\pasaulis\atnaujintiZemelapi.h" 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h" 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\kita\zaidimoMeniu.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoPasiekimai.h"
+#include "zaidejoDuomenys.h"
+#include "zemelapioObjektuGeneravimas.h"
+#include "zaidimoSaugojimas.h"
+#include "atnaujintiZaidejoMatomuma.h"
+#include "atnaujintiZemelapi.h" 
+#include "zaidejoInventorius.h" 
+#include "zaidimoMeniu.h"
+#include "zaidejoPasiekimai.h"
 
 using namespace std;
 
 int main() {
     string zaidSaug[5];
-    ifstream uzsaugotiZaidimai(".txt/uzsaugotiZaidimai.txt");
+    ifstream uzsaugotiZaidimai("uzsaugotiZaidimai.txt");
     if (uzsaugotiZaidimai.is_open()) {
         for (int j = 0; j < sizeof zaidSaug / sizeof zaidSaug[0]; j++) { 
             uzsaugotiZaidimai >> zaidSaug[j];
@@ -31,6 +31,7 @@ int main() {
                 "1 - PRADETI NAUJA ZAIDIMA.\n"
                 "2 - PAKRAUTI ISSAUGOTA ZAIDIMA.\n"
                 "3 - ZAIDEJO TOP.\n"
+                "4 - ZAIDIMO APRASYMAS.\n"
                 "\nPASIRINKITE MENU PUNKTA: ";
         cin >> pagrMeniu;
         switch(pagrMeniu) {
@@ -54,7 +55,7 @@ int main() {
                 cout << "\nPASIRINKITE ISSAUGOTA: ";
                 cin >> nr;
                 if (nr - 1 == 0) {
-                    ifstream pirmas(".txt/saugojimoVieta_1.txt");
+                    ifstream pirmas("saugojimoVieta_1.txt");
                     if (pirmas.is_open()) {
                         for (int i = 0; i < 30; i++) {
                             for (int j = 0; j < 120; j++) {
@@ -146,7 +147,7 @@ int main() {
                     }
                 }
                 else if (nr - 1 == 1) {
-                    ifstream antras(".txt/saugojimoVieta_2.txt");
+                    ifstream antras("saugojimoVieta_2.txt");
                     if (antras.is_open()) {
                         for (int i = 0; i < 30; i++) {
                             for (int j = 0; j < 120; j++) {
@@ -184,7 +185,7 @@ int main() {
                     }
                 }
                 else if (nr - 1 == 2) {
-                    ifstream trecias(".txt/saugojimoVieta_3.txt");
+                    ifstream trecias("saugojimoVieta_3.txt");
                     if (trecias.is_open()) {
                         for (int i = 0; i < 30; i++) {
                             for (int j = 0; j < 120; j++) {
@@ -222,7 +223,7 @@ int main() {
                     }
                 }
                 else if (nr - 1 == 3) {
-                    ifstream ketvirtas(".txt/saugojimoVieta_4.txt");
+                    ifstream ketvirtas("saugojimoVieta_4.txt");
                     if (ketvirtas.is_open()) {
                         for (int i = 0; i < 30; i++) {
                             for (int j = 0; j < 120; j++) {
@@ -260,7 +261,7 @@ int main() {
                     }
                 }
                 else if (nr - 1 == 4) {
-                    ifstream penktas(".txt/saugojimoVieta_5.txt");
+                    ifstream penktas("saugojimoVieta_5.txt");
                     if (penktas.is_open()) {
                         for (int i = 0; i < 30; i++) {
                             for (int j = 0; j < 120; j++) {
@@ -314,7 +315,11 @@ int main() {
                 }
                 if (pagalKa == 1) pagalPatirti(kiekis);
                 else pagalPinigus(kiekis);
-                system("C:/Users/rytuciss/Documents/GitHub/praktika_zaidimas/praktikosDarbas/.html/zaidejuTop.html");
+                system("zaidejuTop.html");
+                break;
+            }
+            case 4: {
+                system("zaidimoAprasymas.html");
                 break;
             }
             default: {

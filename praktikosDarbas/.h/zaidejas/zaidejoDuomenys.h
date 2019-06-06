@@ -49,7 +49,7 @@ void zaidejoDuomenuSpausdinimas(int nr) {
             "\nLYGIS: " << zaidDuom[nr].lvl <<
             "\nXP: " << zaidDuom[nr].xp <<
             "\nAUKSAS: " << zaidDuom[nr].gold <<
-            "\nMAISTAS: " << zaidDuom[nr].maistas;
+            "\nMAISTAS: " << zaidDuom[nr].maistas << "\n";
 }
 //pasikelus lygi pasirenkame bonusus duomenims
 void pasirinktiSavybe(int nr) {

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <windows.h>
 
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zemelapioObjektuGeneravimas.h"
@@ -8,6 +9,7 @@
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZemelapi.h" 
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h" 
 #include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\zaidimoMeniu.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoPasiekimai.h"
 
 using namespace std;
 
@@ -21,12 +23,13 @@ int main() {
     }
     char temp, temp1 = '.';
     char zemelapis[30][120];
-    int zemPlotis = 120, zemAukstis = 30, nr, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], kuriMisija = 0;
+    int zemPlotis = 120, zemAukstis = 30, nr, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], kuriMisija = 0, zaidejoPasiekimai[15];
     bool procVeikia = true;
     int pagrMeniu = -1;
     cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
             "1 - PRADETI NAUJA ZAIDIMA.\n"
-            "2 - PAKRAUTI ISSAUGOTA ZAIDIMA.\n";
+            "2 - PAKRAUTI ISSAUGOTA ZAIDIMA.\n"
+            "3 - ZAIDEJO TOP.\n";
     while (procVeikia == true) {
         cout << "\nPASIRINKITE MENU PUNKTA: ";
         cin >> pagrMeniu;
@@ -35,6 +38,7 @@ int main() {
                 exit(0);
             }
             case 1: {     
+                zaidejoPasiekimaiNaujas(zaidejoPasiekimai);
                 atspausdintiIssaugotus(zaidSaug);
                 sukurtiNauja(nr, zaidSaug);
                 cout << "\nPASAULIS GENERUOJAMAS...\n";
@@ -42,7 +46,7 @@ int main() {
                 atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                 atnaujintiZemelapi(zemelapis, zemPlotis, zemAukstis);
                 duotiPradineIranga(nr);
-                zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija);
+                zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
                 break;
             }
             case 2: {
@@ -81,10 +85,170 @@ int main() {
                         pirmas >> zaidDuom[nr].lvl;
                         pirmas >> zaidDuom[nr].gold;
                         pirmas >> zaidDuom[nr].maistas;
-                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija);
+                        for (int i = 0; i < 15; i++) {
+                            pirmas >> zaidejoPasiekimai[i];
+                        }
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
                     }
                 }
-                
+                else if (nr - 1 == 1) {
+                    ifstream antras(".txt/saugojimoVieta_2.txt");
+                    if (antras.is_open()) {
+                        for (int i = 0; i < 30; i++) {
+                            for (int j = 0; j < 120; j++) {
+                                antras >> zemelapis[i][j];
+                            }
+                        }
+                        antras >> zemPlotis;
+                        antras >> zemAukstis;
+                        antras >> xZaid;
+                        antras >> yZaid;
+                        antras >> xMiest;
+                        antras >> yMiest;
+                        antras >> xKaim;
+                        antras >> yKaim;
+                        antras >> temp;
+                        antras >> temp1;
+                        antras >> kuriMisija;
+                        for (int i = 0; i < 30; i++) {
+                            antras >> dungKord[i];
+                        }
+                        antras >> zaidDuom[nr].vardas;
+                        antras >> zaidDuom[nr].sunkumas;
+                        antras >> zaidDuom[nr].hp;
+                        antras >> zaidDuom[nr].def;
+                        antras >> zaidDuom[nr].atk;
+                        antras >> zaidDuom[nr].shield;
+                        antras >> zaidDuom[nr].xp;
+                        antras >> zaidDuom[nr].lvl;
+                        antras >> zaidDuom[nr].gold;
+                        antras >> zaidDuom[nr].maistas;
+                        for (int i = 0; i < 15; i++) {
+                            antras >> zaidejoPasiekimai[i];
+                        }
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                    }
+                }
+                else if (nr - 1 == 2) {
+                    ifstream trecias(".txt/saugojimoVieta_3.txt");
+                    if (trecias.is_open()) {
+                        for (int i = 0; i < 30; i++) {
+                            for (int j = 0; j < 120; j++) {
+                                trecias >> zemelapis[i][j];
+                            }
+                        }
+                        trecias >> zemPlotis;
+                        trecias >> zemAukstis;
+                        trecias >> xZaid;
+                        trecias >> yZaid;
+                        trecias >> xMiest;
+                        trecias >> yMiest;
+                        trecias >> xKaim;
+                        trecias >> yKaim;
+                        trecias >> temp;
+                        trecias >> temp1;
+                        trecias >> kuriMisija;
+                        for (int i = 0; i < 30; i++) {
+                            trecias >> dungKord[i];
+                        }
+                        trecias >> zaidDuom[nr].vardas;
+                        trecias >> zaidDuom[nr].sunkumas;
+                        trecias >> zaidDuom[nr].hp;
+                        trecias >> zaidDuom[nr].def;
+                        trecias >> zaidDuom[nr].atk;
+                        trecias >> zaidDuom[nr].shield;
+                        trecias >> zaidDuom[nr].xp;
+                        trecias >> zaidDuom[nr].lvl;
+                        trecias >> zaidDuom[nr].gold;
+                        trecias >> zaidDuom[nr].maistas;
+                        for (int i = 0; i < 15; i++) {
+                            trecias >> zaidejoPasiekimai[i];
+                        }
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                    }
+                }
+                else if (nr - 1 == 3) {
+                    ifstream ketvirtas(".txt/saugojimoVieta_4.txt");
+                    if (ketvirtas.is_open()) {
+                        for (int i = 0; i < 30; i++) {
+                            for (int j = 0; j < 120; j++) {
+                                ketvirtas >> zemelapis[i][j];
+                            }
+                        }
+                        ketvirtas >> zemPlotis;
+                        ketvirtas >> zemAukstis;
+                        ketvirtas >> xZaid;
+                        ketvirtas >> yZaid;
+                        ketvirtas >> xMiest;
+                        ketvirtas >> yMiest;
+                        ketvirtas >> xKaim;
+                        ketvirtas >> yKaim;
+                        ketvirtas >> temp;
+                        ketvirtas >> temp1;
+                        ketvirtas >> kuriMisija;
+                        for (int i = 0; i < 30; i++) {
+                            ketvirtas >> dungKord[i];
+                        }
+                        ketvirtas >> zaidDuom[nr].vardas;
+                        ketvirtas >> zaidDuom[nr].sunkumas;
+                        ketvirtas >> zaidDuom[nr].hp;
+                        ketvirtas >> zaidDuom[nr].def;
+                        ketvirtas >> zaidDuom[nr].atk;
+                        ketvirtas >> zaidDuom[nr].shield;
+                        ketvirtas >> zaidDuom[nr].xp;
+                        ketvirtas >> zaidDuom[nr].lvl;
+                        ketvirtas >> zaidDuom[nr].gold;
+                        ketvirtas >> zaidDuom[nr].maistas;
+                        for (int i = 0; i < 15; i++) {
+                            ketvirtas >> zaidejoPasiekimai[i];
+                        }
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                    }
+                }
+                else if (nr - 1 == 4) {
+                    ifstream penktas(".txt/saugojimoVieta_5.txt");
+                    if (penktas.is_open()) {
+                        for (int i = 0; i < 30; i++) {
+                            for (int j = 0; j < 120; j++) {
+                                penktas >> zemelapis[i][j];
+                            }
+                        }
+                        penktas >> zemPlotis;
+                        penktas >> zemAukstis;
+                        penktas >> xZaid;
+                        penktas >> yZaid;
+                        penktas >> xMiest;
+                        penktas >> yMiest;
+                        penktas >> xKaim;
+                        penktas >> yKaim;
+                        penktas >> temp;
+                        penktas >> temp1;
+                        penktas >> kuriMisija;
+                        for (int i = 0; i < 30; i++) {
+                            penktas >> dungKord[i];
+                        }
+                        penktas >> zaidDuom[nr].vardas;
+                        penktas >> zaidDuom[nr].sunkumas;
+                        penktas >> zaidDuom[nr].hp;
+                        penktas >> zaidDuom[nr].def;
+                        penktas >> zaidDuom[nr].atk;
+                        penktas >> zaidDuom[nr].shield;
+                        penktas >> zaidDuom[nr].xp;
+                        penktas >> zaidDuom[nr].lvl;
+                        penktas >> zaidDuom[nr].gold;
+                        penktas >> zaidDuom[nr].maistas;
+                        for (int i = 0; i < 15; i++) {
+                            penktas >> zaidejoPasiekimai[i];
+                        }
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                    }
+                }
+                break;
+            }
+            case 3: {
+                LPCTSTR helpFile = "C:/Users/rytuciss/Documents/GitHub/praktika/praktikosDarbas/.html/zaidejuTop.html";
+                ShellExecute(NULL, "open", helpFile, NULL, NULL, SW_SHOWNORMAL);
+                system("PAUSE");
                 break;
             }
             default: {

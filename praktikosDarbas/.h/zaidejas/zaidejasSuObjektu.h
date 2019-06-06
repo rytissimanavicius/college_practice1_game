@@ -16,11 +16,12 @@ void valdymoPaaiskinimas1() { //TODO: tureti viena paaiskinima, kazkuris kitas h
             "\nSPACE - VALDYMAS.\n";
 }
 //nuolatos tikrina ar zaidejas atsistojo ant zemelapio objekto, kaip miestas ar dungeonas, jeigu taip - atidaro meniu
-void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int nr, int dungKord[30]) {
+void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int nr, int dungKord[30], int zaidejoPasiekimai[15]) {
     int rinktis, rinktis1, kiekis;
     bool lankosi = true, lankosi1 = true, sveikinimas = true, sekmingai = false, pralaimejoMisija;
     while (lankosi == true) {
         while (xZaid == xMiest && yZaid == yMiest && lankosi1 == true) {
+            if (zaidejoPasiekimai[1] == 0) zaidejoPasiekimai[1] = 1;
             if (sveikinimas == true) {
                 cout << "\n\nLANKOTES MIESTE:\n";
                 sveikinimas = false;
@@ -52,6 +53,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                                 cout << "\nNEPAKANKA AUKSO!\n";
                             } 
                             else {
+                                if (zaidejoPasiekimai[11] == 0) zaidejoPasiekimai[11] = 1;
                                 cout << "\nSEKMINGAI NUPIRKA!\n";
                                 zaidDuom[nr].maistas += kiekis;
                                 zaidDuom[nr].gold -= kiekis * 2;
@@ -67,12 +69,14 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                             else {
                                 for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) {
                                     if (zaidInv[i].pav == "GYVYBES POTION") {
+                                        if (zaidejoPasiekimai[11] == 0) zaidejoPasiekimai[11] = 1;
                                         potion.kiekis += kiekis;
                                         zaidDuom[nr].gold -= (kiekis * potion.verteMieste);
                                         cout << "\nSEKMINGAI NUPIRKA!\n";
                                         break;
                                     }
                                     else if (zaidInv[i].pav == "-" && i != 0 && i != 1 && i != 2) {
+                                        if (zaidejoPasiekimai[11] == 0) zaidejoPasiekimai[11] = 1;
                                         zaidInv[i].pav = potion.pav;
                                         potion.kiekis += kiekis;
                                         zaidDuom[nr].gold -= (kiekis * potion.verteMieste);
@@ -94,6 +98,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         cin >> vietaParduodamo;
                     }
                     if (zaidInv[vietaParduodamo - 1].tipas == "sarvai" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) {
                             if (zaidInv[vietaParduodamo - 1].pav == sarvai[i].pav) {
                                 zaidDuom[nr].gold += sarvai[i].gynyba * 2;
@@ -105,6 +110,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         }
                     }
                     else if (zaidInv[vietaParduodamo - 1].tipas == "kardas" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         for (int i = 0; i < sizeof kardas / sizeof kardas[0]; i++) {
                             if (zaidInv[vietaParduodamo - 1].pav == kardas[i].pav) {
                                 zaidDuom[nr].gold += kardas[i].puolimas * 10;
@@ -116,6 +122,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         }
                     }
                     else if (zaidInv[vietaParduodamo - 1].tipas == "skydas" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         for (int i = 0; i < sizeof skydas / sizeof skydas[0]; i++) {
                             if (zaidInv[vietaParduodamo - 1].pav == skydas[i].pav) {
                                 zaidDuom[nr].gold += skydas[i].sansas * 5;
@@ -127,6 +134,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         }
                     }
                     else if (zaidInv[vietaParduodamo - 1].pav == "GYVYBES POTION" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         while (kiekisPardavimo < 1 || kiekisPardavimo > potion.kiekis) {
                             cout << "\nKOKI KIEKI GYVYBES ELIKSYRU PARDUODATE: ";
                             cin >> kiekisPardavimo;
@@ -138,6 +146,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         }
                     }
                     else if (zaidInv[vietaParduodamo - 1].pav == "BRANGAKMENIAI" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         zaidDuom[nr].gold += brangakmeniai.verte;
                         zaidInv[vietaParduodamo - 1].pav = "-";
                     }
@@ -150,6 +159,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
             }
         }
         while (xZaid == xKaim && yZaid == yKaim && lankosi1 == true) {
+            if (zaidejoPasiekimai[2] == 0) zaidejoPasiekimai[2] = 1;
             if (sveikinimas == true) {
                 cout << "\n\nLANKOTES KAIME:\n";
                 sveikinimas = false;
@@ -182,6 +192,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                             } 
                             else {
                                 cout << "\nSEKMINGAI NUPIRKA!\n";
+                                if (zaidejoPasiekimai[11] == 0) zaidejoPasiekimai[11] = 1;
                                 zaidDuom[nr].maistas += kiekis;
                                 zaidDuom[nr].gold -= kiekis;
                                 sekmingai == true;
@@ -194,14 +205,16 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                                 cout << "\nNEPAKANKA AUKSO!\n";
                             }
                             else {
-                                for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) { //TODO:
+                                for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) { 
                                     if (zaidInv[i].pav == "GYVYBES POTION") {
+                                        if (zaidejoPasiekimai[11] == 0) zaidejoPasiekimai[11] = 1;
                                         potion.kiekis += kiekis;
                                         zaidDuom[nr].gold -= (kiekis * potion.verteKaime);
                                         cout << "\nSEKMINGAI NUPIRKA!\n";
                                         break;
                                     }
                                     else if (zaidInv[i].pav == "-" && i != 0 && i != 1 && i != 2) {
+                                        if (zaidejoPasiekimai[11] == 0) zaidejoPasiekimai[11] = 1;
                                         zaidInv[i].pav = potion.pav;
                                         potion.kiekis += kiekis;
                                         zaidDuom[nr].gold -= (kiekis * potion.verteKaime);
@@ -223,6 +236,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         cin >> vietaParduodamo;
                     }
                     if (zaidInv[vietaParduodamo - 1].tipas == "sarvai" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) {
                             if (zaidInv[vietaParduodamo - 1].pav == sarvai[i].pav) {
                                 zaidDuom[nr].gold += sarvai[i].gynyba * 1;
@@ -234,6 +248,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         }
                     }
                     else if (zaidInv[vietaParduodamo - 1].tipas == "kardas" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         for (int i = 0; i < sizeof kardas / sizeof kardas[0]; i++) {
                             if (zaidInv[vietaParduodamo - 1].pav == kardas[i].pav) {
                                 zaidDuom[nr].gold += kardas[i].puolimas * 5;
@@ -245,6 +260,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         }
                     }
                     else if (zaidInv[vietaParduodamo - 1].tipas == "skydas" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         for (int i = 0; i < sizeof skydas / sizeof skydas[0]; i++) {
                             if (zaidInv[vietaParduodamo - 1].pav == skydas[i].pav) {
                                 zaidDuom[nr].gold += skydas[i].sansas * 2;
@@ -256,6 +272,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         }
                     }
                     else if (zaidInv[vietaParduodamo - 1].pav == "GYVYBES POTION" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         while (kiekisPardavimo < 1 || kiekisPardavimo > potion.kiekis) {
                             cout << "\nKOKI KIEKI GYVYBES ELIKSYRU PARDUODATE: ";
                             cin >> kiekisPardavimo;
@@ -267,6 +284,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         }
                     }
                     else if (zaidInv[vietaParduodamo - 1].pav == "BRANGAKMENIAI" && vietaParduodamo != 0) {
+                        if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         zaidDuom[nr].gold += brangakmeniai.verte;
                         zaidInv[vietaParduodamo - 1].pav = "-";
                     }
@@ -293,7 +311,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         break;
                     }
                     case 1: {
-                        kova(nr, pralaimejoMisija);
+                        kova(nr, pralaimejoMisija, zaidejoPasiekimai);
                         break;
                     }
                     default: {

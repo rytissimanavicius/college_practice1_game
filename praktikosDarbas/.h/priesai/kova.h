@@ -106,7 +106,7 @@ void lobis(int nr) {
         }
     }
 }
-void kova(int nr, bool &pralaimejoMisija) {
+void kova(int nr, bool &pralaimejoMisija, int zaidejoPasiekimai[15]) {
     int priesoTipas, pataikymoSansas;
     bool kovaVyksta = true, skydasPakeltas = false;
     sugeneruotiPriesa(nr, priesoTipas);
@@ -143,9 +143,11 @@ void kova(int nr, bool &pralaimejoMisija) {
                             skydasPakeltas = false;
                         }
                         if (priesas.gyvybe <= 0) {
+                            if (zaidejoPasiekimai[3] == 0) zaidejoPasiekimai[3] = 1;
                             cout << "ZOMBIS IVEIKTAS!\n";
                             zaidDuom[nr].xp += priesas.duosXp;
                             zaidDuom[nr].gold += priesas.duosAukso;
+                            pasikeleLygi(nr);
                             lobis(nr);
                             kovaVyksta = false;
                             valdymoPaaiskinimas2();

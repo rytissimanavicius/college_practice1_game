@@ -17,14 +17,15 @@ void valdymoPaaiskinimas() {
             "\nUP - JUDETI I VIRSU."
             "\nDOWN - JUDETI I APACIA."
             "\nLEFT - JUDETI I KAIRE."
-            "\nDESINE - JUDETI I DESINE." //FIXME: zemPlotis ir zemAukstis gal nereikalingi, galim naudot sizeof
+            "\nDESINE - JUDETI I DESINE." 
             "\nSPACE - VALDYMAS.\n";
 }
-void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1, int &kuriMisija) {
+void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int &xZaid, int &yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1, int &kuriMisija, int zaidejoPasiekimai[15]) {
     bool zaidVaiksto = true, pirmEjimas = true, naujinti = false;
     int bind;
     valdymoPaaiskinimas();
     while(zaidVaiksto == true) {
+        
         switch((bind = getch())) {
             case VK_ESCAPE: {
                 zaidVaiksto = false;
@@ -109,8 +110,9 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
             zaidejoDuomenys(nr, naujinti);
             zaidejoDuomenuSpausdinimas(nr);
             pasikeleLygi(nr);
-            misija(kuriMisija, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, nr, dungKord);
-            zaidejasSuObjektu(zemelapis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, nr, dungKord);
+            misija(kuriMisija, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, nr, dungKord, zaidejoPasiekimai);
+            zaidejasSuObjektu(zemelapis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, nr, dungKord, zaidejoPasiekimai);
+            if (zaidejoPasiekimai[0] == 0) zaidejoPasiekimai[0] = 1;
             naujinti = false;
         }
     }

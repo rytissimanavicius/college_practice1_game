@@ -2,14 +2,14 @@
 #include <fstream>
 #include <windows.h>
 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zemelapioObjektuGeneravimas.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\zaidimoSaugojimas.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZaidejoMatomuma.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\atnaujintiZemelapi.h" 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h" 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\zaidimoMeniu.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoPasiekimai.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\pasaulis\zemelapioObjektuGeneravimas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\kita\zaidimoSaugojimas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\pasaulis\atnaujintiZaidejoMatomuma.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\pasaulis\atnaujintiZemelapi.h" 
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h" 
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\kita\zaidimoMeniu.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoPasiekimai.h"
 
 using namespace std;
 
@@ -23,15 +23,15 @@ int main() {
     }
     char temp, temp1 = '.';
     char zemelapis[30][120];
-    int zemPlotis = 120, zemAukstis = 30, nr, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], kuriMisija = 0, zaidejoPasiekimai[15];
+    int zemPlotis = 120, zemAukstis = 30, nr, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord[30], kuriMisija = 0, zaidejoPasiekimai[15], kiekis;
     bool procVeikia = true;
     int pagrMeniu = -1;
-    cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
-            "1 - PRADETI NAUJA ZAIDIMA.\n"
-            "2 - PAKRAUTI ISSAUGOTA ZAIDIMA.\n"
-            "3 - ZAIDEJO TOP.\n";
     while (procVeikia == true) {
-        cout << "\nPASIRINKITE MENU PUNKTA: ";
+        cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
+                "1 - PRADETI NAUJA ZAIDIMA.\n"
+                "2 - PAKRAUTI ISSAUGOTA ZAIDIMA.\n"
+                "3 - ZAIDEJO TOP.\n"
+                "\nPASIRINKITE MENU PUNKTA: ";
         cin >> pagrMeniu;
         switch(pagrMeniu) {
             case 0: {
@@ -46,7 +46,7 @@ int main() {
                 atnaujintiZaidejoMatomuma(zemelapis, xZaid, yZaid, dungKord);
                 atnaujintiZemelapi(zemelapis, zemPlotis, zemAukstis);
                 duotiPradineIranga(nr);
-                zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai, kiekis);
                 break;
             }
             case 2: {
@@ -88,7 +88,7 @@ int main() {
                         for (int i = 0; i < 15; i++) {
                             pirmas >> zaidejoPasiekimai[i];
                         }
-                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai, kiekis);
                     }
                 }
                 else if (nr - 1 == 1) {
@@ -126,7 +126,7 @@ int main() {
                         for (int i = 0; i < 15; i++) {
                             antras >> zaidejoPasiekimai[i];
                         }
-                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai, kiekis);
                     }
                 }
                 else if (nr - 1 == 2) {
@@ -164,7 +164,7 @@ int main() {
                         for (int i = 0; i < 15; i++) {
                             trecias >> zaidejoPasiekimai[i];
                         }
-                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai, kiekis);
                     }
                 }
                 else if (nr - 1 == 3) {
@@ -202,7 +202,7 @@ int main() {
                         for (int i = 0; i < 15; i++) {
                             ketvirtas >> zaidejoPasiekimai[i];
                         }
-                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai, kiekis);
                     }
                 }
                 else if (nr - 1 == 4) {
@@ -240,15 +240,27 @@ int main() {
                         for (int i = 0; i < 15; i++) {
                             penktas >> zaidejoPasiekimai[i];
                         }
-                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai);
+                        zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai, kiekis);
                     }
                 }
                 break;
             }
             case 3: {
-                LPCTSTR helpFile = "C:/Users/rytuciss/Documents/GitHub/praktika/praktikosDarbas/.html/zaidejuTop.html";
-                ShellExecute(NULL, "open", helpFile, NULL, NULL, SW_SHOWNORMAL);
-                system("PAUSE");
+                int pagalKa = 0;
+                cout << "\n1. RUSIUOTI PAGAL DIDZIAUSIA XP KIEKI."
+                        "\n2. RUSIUOTI PAGAL DIDZIAUSIA PINIGU KIEKI.\n"
+                        "\nIVESKITE PAGAL KA RUSIUOSITE: ";
+                cin >> pagalKa;
+                while (pagalKa < 1 || pagalKa > 2) {
+                    cout << "\nTOKS PASIRINKIMAS NEEGZISTUOJA!\n\n"
+                            "\n1. RUSIUOTI PAGAL DIDZIAUSIA XP KIEKI."
+                            "\n2. RUSIUOTI PAGAL DIDZIAUSIA PINIGU KIEKI.\n"
+                            "\nIVESKITE PAGAL KA RUSIUOSITE: ";
+                    cin >> pagalKa;
+                }
+                if (pagalKa == 1) pagalPatirti(kiekis);
+                else pagalPinigus(kiekis);
+                system("C:/Users/rytuciss/Documents/GitHub/praktika_zaidimas/praktikosDarbas/.html/zaidejuTop.html");
                 break;
             }
             default: {

@@ -1,9 +1,9 @@
 #ifndef MISIJOS_H
 #define MISIJOS_H
 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\priesai\kova.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\priesai\kova.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h"
 
 void atspausdintiMisijosTiksla(int kuriMisija) {
     if (kuriMisija == 0) cout << "\nKELIAUJANT SU SAMDINIU KOMPANIJA JUS NETIKETAI BUVOTE UZPULTI! TAI BUVO PADARAI PANASUS I ZMONES, BET JU AKYSE NEBUVO JOKIOS GYVYBES. JIE NASRAIS IR DANTIMIS PO VIENA GNAIBE TAVO KOMPANIJONUS, NELIKO KITOS ISEITIES KAIP SPRUKTI. GRIZKITE I MIESTA PRANESTI NAUJIENAS.\n";

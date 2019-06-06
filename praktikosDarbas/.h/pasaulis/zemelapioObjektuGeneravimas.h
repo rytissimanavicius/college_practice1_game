@@ -3,7 +3,7 @@
 
 #include <windows.h>
 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\rastiObjektoPozicija.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\kita\rastiObjektoPozicija.h"
 
 using namespace std;
 

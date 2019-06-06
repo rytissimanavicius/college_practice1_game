@@ -3,9 +3,9 @@
 
 #include <fstream>
 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\sansoKauliukas.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\daiktai\daiktuStrukturos.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\kita\sansoKauliukas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\daiktai\daiktuStrukturos.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
 
 using namespace std;
 

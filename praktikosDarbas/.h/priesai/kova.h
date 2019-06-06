@@ -1,9 +1,9 @@
 #ifndef KOVA_H
 #define KOVA_H
 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\sansoKauliukas.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\daiktai\daiktuStrukturos.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\kita\sansoKauliukas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\daiktai\daiktuStrukturos.h"
 
 using namespace std;
 
@@ -121,7 +121,7 @@ void kova(int nr, bool &pralaimejoMisija, int zaidejoPasiekimai[15]) {
                 "\n1. ATAKUOTI."
                 "\n2. PAKELTI SKYDA."
                 "\n3. SUTRYGDYTI."
-                "\n4. GYVYBES ELIKSYRAS.\n\n";
+                "\n4. GYVYBES ELIKSYRAS.\n\n"
                 "PASIRINKITE VEIKSMA: ";
         cin >> kovosVeiksmai;
         switch (kovosVeiksmai) {

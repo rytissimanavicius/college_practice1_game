@@ -12,7 +12,7 @@ void pasiekimaiSpausdinti(int zaidejoPasiekimai[15]) {
         else if (i == 1 && zaidejoPasiekimai[i] == 0) cout << i + 1 << ". APLANKYKITE MIESTA (NEPASIEKTA).\n";
 
         if (i == 2 && zaidejoPasiekimai[i] == 1) cout << i + 1 << ". APLANKYKITE KAIMA (PASIEKTA).\n";
-        else if (i == 2 && zaidejoPasiekimai[i] == 0) cout << i + 1 << ". APLANKYKITE MIESTA (NEPASIEKTA).\n";
+        else if (i == 2 && zaidejoPasiekimai[i] == 0) cout << i + 1 << ". APLANKYKITE KAIMA (NEPASIEKTA).\n";
 
         if (i == 3 && zaidejoPasiekimai[i] == 1) cout << i + 1 << ". LAIMEKITE KOVA (PASIEKTA).\n";
         else if (i == 3 && zaidejoPasiekimai[i] == 0) cout << i + 1 << ". LAIMEKITE KOVA (NEPASIEKTA).\n";

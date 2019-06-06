@@ -3,9 +3,9 @@
 
 #include <conio.h>
 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejasSuObjektu.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\misijos\misijos.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoDuomenys.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejasSuObjektu.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\misijos\misijos.h"
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -25,7 +25,6 @@ void zaidejoValdymas(char zemelapis[30][120], int zemPlotis, int zemAukstis, int
     int bind;
     valdymoPaaiskinimas();
     while(zaidVaiksto == true) {
-        
         switch((bind = getch())) {
             case VK_ESCAPE: {
                 zaidVaiksto = false;

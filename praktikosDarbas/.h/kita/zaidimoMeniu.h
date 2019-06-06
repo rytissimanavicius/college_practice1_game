@@ -1,15 +1,16 @@
 #ifndef ZAIDIMOMENIU_H
 #define ZAIDIMOMENIU_H
 
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\misijos\misijos.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\kita\zaidimoSaugojimas.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\pasaulis\zaidejoValdymas.h"
-#include "C:\Users\rytuciss\Documents\GitHub\praktika\praktikosDarbas\.h\zaidejas\zaidejoPasiekimai.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\misijos\misijos.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\kita\zaidimoSaugojimas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\pasaulis\zaidejoValdymas.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoPasiekimai.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\kita\zaidejuTopas.h"
 
 
 using namespace std;
 
-void zaidimoMeniu(char zemelapis[30][120], int zemPlotis, int zemAukstis, int xZaid, int yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1, int kuriMisija, int zaidejoPasiekimai[15]) {
+void zaidimoMeniu(char zemelapis[30][120], int zemPlotis, int zemAukstis, int xZaid, int yZaid, int xMiest, int yMiest, int xKaim, int yKaim, int dungKord[30], int nr, char &temp, char &temp1, int kuriMisija, int zaidejoPasiekimai[15], int &kiekis) {
     bool zaidVeikia = true;
     int zaidMenu = -1;
     while (zaidVeikia == true) {
@@ -44,14 +45,12 @@ void zaidimoMeniu(char zemelapis[30][120], int zemPlotis, int zemAukstis, int xZ
         cin >> zaidMenu;
         switch(zaidMenu) {
             case 0: {
-                ofstream zaidejuTop(".txt/zaidejuTop.txt"); //TODO: faile saugotu 100
-                if (zaidejuTop.is_open()) {
-                    zaidejuTop << zaidDuom[nr].vardas << " " << zaidDuom[nr].xp << " ";
-                }
+                zaidejuTopas(nr, kiekis);
                 saugojimas(nr, zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, kuriMisija, temp, temp1, zaidejoPasiekimai); 
                 cout << "\n0 - ISJUNGTI ZAIDIMA.\n" 
                         "1 - PRADETI NAUJA ZAIDIMA.\n"
-                        "2 - ISSAUGOTI ZAIDIMAI.\n";
+                        "2 - ISSAUGOTI ZAIDIMAI.\n"
+                        "3 - ZAIDEJO TOP.\n";
                 zaidVeikia = false;
                 break;
             }

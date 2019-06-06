@@ -3,6 +3,9 @@
 
 #include <fstream>
 
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\daiktai\daiktuStrukturos.h"
+#include "C:\Users\rytuciss\Documents\GitHub\praktika_zaidimas\praktikosDarbas\.h\zaidejas\zaidejoInventorius.h"
+
 using namespace std;
 
 void atspausdintiIssaugotus(string zaidSaug[5]) {
@@ -113,6 +116,75 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
                 saugoti << zaidejoPasiekimai[i];
                 saugoti << " ";
             }
+            for (int i = 0; i < 10; i++) {
+                if (zaidInv[i].pav != "-") {
+                    if (zaidInv[i].tipas == "sarvai") {
+                        for (int j = 0; j < sizeof sarvai / sizeof sarvai[0]; j++) {
+                            if (zaidInv[i].pav == sarvai[j].pav) {
+                                saugoti << sarvai[j].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << sarvai[j].pav;
+                                saugoti << " ";
+                                saugoti << sarvai[j].gynyba;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "kardas") {
+                        for (int j = 0; j < sizeof kardas / sizeof kardas[0]; j++) {
+                            if (zaidInv[i].pav == kardas[j].pav) {
+                                saugoti << kardas[j].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << kardas[j].pav;
+                                saugoti << " ";
+                                saugoti << kardas[j].puolimas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "skydas") {
+                        for (int j = 0; j < sizeof skydas / sizeof skydas[0]; j++) {
+                            if (zaidInv[i].pav == skydas[j].pav) {
+                                saugoti << skydas[j].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << skydas[j].pav;
+                                saugoti << " ";
+                                saugoti << skydas[j].sansas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].pav == "GYVYBES_POTION") {
+                        saugoti << "GYVYBES_POTION";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                        saugoti << potion.kiekis;
+                        saugoti << " ";
+                    }
+                    else if (zaidInv[i].pav == "BRANGAKMENIAI") {
+                        saugoti << "BRANGAKMENIAI";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                    }
+                }
+                else {
+                    saugoti << "-";
+                    saugoti << " ";
+                    saugoti << i;
+                    saugoti << " ";
+                }
+            }
         }
     }
     else if (nr == 2) {
@@ -172,6 +244,75 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
             for (int i = 0; i < 15; i++) {
                 saugoti << zaidejoPasiekimai[i];
                 saugoti << " ";
+            }
+            for (int i = 0; i < 10; i++) {
+                if (zaidInv[i].pav != "-") {
+                    if (zaidInv[i].tipas == "sarvai") {
+                        for (int j = 0; j < sizeof sarvai / sizeof sarvai[0]; j++) {
+                            if (zaidInv[i].pav == sarvai[j].pav) {
+                                saugoti << sarvai[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << sarvai[i].pav;
+                                saugoti << " ";
+                                saugoti << sarvai[i].gynyba;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "kardas") {
+                        for (int j = 0; j < sizeof kardas / sizeof kardas[0]; j++) {
+                            if (zaidInv[i].pav == kardas[j].pav) {
+                                saugoti << kardas[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << kardas[i].pav;
+                                saugoti << " ";
+                                saugoti << kardas[i].puolimas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "skydas") {
+                        for (int j = 0; j < sizeof skydas / sizeof skydas[0]; j++) {
+                            if (zaidInv[i].pav == skydas[j].pav) {
+                                saugoti << skydas[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << skydas[i].pav;
+                                saugoti << " ";
+                                saugoti << skydas[i].sansas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].pav == "GYVYBES_POTION") {
+                        saugoti << "GYVYBES_POTION";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                        saugoti << potion.kiekis;
+                        saugoti << " ";
+                    }
+                    else if (zaidInv[i].pav == "BRANGAKMENIAI") {
+                        saugoti << "BRANGAKMENIAI";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                    }
+                }
+                else {
+                    saugoti << "-";
+                    saugoti << " ";
+                    saugoti << i;
+                    saugoti << " ";
+                }
             }
         }
     }
@@ -233,6 +374,75 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
                 saugoti << zaidejoPasiekimai[i];
                 saugoti << " ";
             }
+            for (int i = 0; i < 10; i++) {
+                if (zaidInv[i].pav != "-") {
+                    if (zaidInv[i].tipas == "sarvai") {
+                        for (int j = 0; j < sizeof sarvai / sizeof sarvai[0]; j++) {
+                            if (zaidInv[i].pav == sarvai[j].pav) {
+                                saugoti << sarvai[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << sarvai[i].pav;
+                                saugoti << " ";
+                                saugoti << sarvai[i].gynyba;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "kardas") {
+                        for (int j = 0; j < sizeof kardas / sizeof kardas[0]; j++) {
+                            if (zaidInv[i].pav == kardas[j].pav) {
+                                saugoti << kardas[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << kardas[i].pav;
+                                saugoti << " ";
+                                saugoti << kardas[i].puolimas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "skydas") {
+                        for (int j = 0; j < sizeof skydas / sizeof skydas[0]; j++) {
+                            if (zaidInv[i].pav == skydas[j].pav) {
+                                saugoti << skydas[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << skydas[i].pav;
+                                saugoti << " ";
+                                saugoti << skydas[i].sansas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].pav == "GYVYBES_POTION") {
+                        saugoti << "GYVYBES_POTION";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                        saugoti << potion.kiekis;
+                        saugoti << " ";
+                    }
+                    else if (zaidInv[i].pav == "BRANGAKMENIAI") {
+                        saugoti << "BRANGAKMENIAI";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                    }
+                }
+                else {
+                    saugoti << "-";
+                    saugoti << " ";
+                    saugoti << i;
+                    saugoti << " ";
+                }
+            }
         }
     }
     else if (nr == 4) {
@@ -293,6 +503,75 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
                 saugoti << zaidejoPasiekimai[i];
                 saugoti << " ";
             }
+            for (int i = 0; i < 10; i++) {
+                if (zaidInv[i].pav != "-") {
+                    if (zaidInv[i].tipas == "sarvai") {
+                        for (int j = 0; j < sizeof sarvai / sizeof sarvai[0]; j++) {
+                            if (zaidInv[i].pav == sarvai[j].pav) {
+                                saugoti << sarvai[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << sarvai[i].pav;
+                                saugoti << " ";
+                                saugoti << sarvai[i].gynyba;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "kardas") {
+                        for (int j = 0; j < sizeof kardas / sizeof kardas[0]; j++) {
+                            if (zaidInv[i].pav == kardas[j].pav) {
+                                saugoti << kardas[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << kardas[i].pav;
+                                saugoti << " ";
+                                saugoti << kardas[i].puolimas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "skydas") {
+                        for (int j = 0; j < sizeof skydas / sizeof skydas[0]; j++) {
+                            if (zaidInv[i].pav == skydas[j].pav) {
+                                saugoti << skydas[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << skydas[i].pav;
+                                saugoti << " ";
+                                saugoti << skydas[i].sansas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].pav == "GYVYBES_POTION") {
+                        saugoti << "GYVYBES_POTION";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                        saugoti << potion.kiekis;
+                        saugoti << " ";
+                    }
+                    else if (zaidInv[i].pav == "BRANGAKMENIAI") {
+                        saugoti << "BRANGAKMENIAI";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                    }
+                }
+                else {
+                    saugoti << "-";
+                    saugoti << " ";
+                    saugoti << i;
+                    saugoti << " ";
+                }
+            }
         }
     }
     else if (nr == 5) { 
@@ -352,6 +631,75 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
             for (int i = 0; i < 15; i++) {
                 saugoti << zaidejoPasiekimai[i];
                 saugoti << " ";
+            }
+            for (int i = 0; i < 10; i++) {
+                if (zaidInv[i].pav != "-") {
+                    if (zaidInv[i].tipas == "sarvai") {
+                        for (int j = 0; j < sizeof sarvai / sizeof sarvai[0]; j++) {
+                            if (zaidInv[i].pav == sarvai[j].pav) {
+                                saugoti << sarvai[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << sarvai[i].pav;
+                                saugoti << " ";
+                                saugoti << sarvai[i].gynyba;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "kardas") {
+                        for (int j = 0; j < sizeof kardas / sizeof kardas[0]; j++) {
+                            if (zaidInv[i].pav == kardas[j].pav) {
+                                saugoti << kardas[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << kardas[i].pav;
+                                saugoti << " ";
+                                saugoti << kardas[i].puolimas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].tipas == "skydas") {
+                        for (int j = 0; j < sizeof skydas / sizeof skydas[0]; j++) {
+                            if (zaidInv[i].pav == skydas[j].pav) {
+                                saugoti << skydas[i].tipas;
+                                saugoti << " ";
+                                saugoti << i;
+                                saugoti << " ";
+                                saugoti << skydas[i].pav;
+                                saugoti << " ";
+                                saugoti << skydas[i].sansas;
+                                saugoti << " ";
+                                break;
+                            }
+                        }
+                    }
+                    else if (zaidInv[i].pav == "GYVYBES_POTION") {
+                        saugoti << "GYVYBES_POTION";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                        saugoti << potion.kiekis;
+                        saugoti << " ";
+                    }
+                    else if (zaidInv[i].pav == "BRANGAKMENIAI") {
+                        saugoti << "BRANGAKMENIAI";
+                        saugoti << " ";
+                        saugoti << i;
+                        saugoti << " ";
+                    }
+                }
+                else {
+                    saugoti << "-";
+                    saugoti << " ";
+                    saugoti << i;
+                    saugoti << " ";
+                }
             }
         }
     }

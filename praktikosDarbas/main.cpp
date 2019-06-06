@@ -88,6 +88,60 @@ int main() {
                         for (int i = 0; i < 15; i++) {
                             pirmas >> zaidejoPasiekimai[i];
                         }
+                        string invDaiktas;
+                        int vieta;
+                        for (int i = 0; i < 10; i++) {
+                            pirmas >> invDaiktas;
+                            if (invDaiktas == "sarvai") {
+                                pirmas >> vieta;
+                                for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) {
+                                    if (sarvai[i].pav == "-") {
+                                        pirmas >> sarvai[i].pav;
+                                        pirmas >> sarvai[i].gynyba;
+                                        zaidInv[vieta].pav = sarvai[i].pav;
+                                        zaidInv[vieta].tipas = sarvai[i].tipas;
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (invDaiktas == "kardas") {
+                                pirmas >> vieta;
+                                for (int i = 0; i < sizeof kardas / sizeof kardas[0]; i++) {
+                                    if (kardas[i].pav == "-") {
+                                        pirmas >> kardas[i].pav;
+                                        pirmas >> kardas[i].puolimas;
+                                        zaidInv[vieta].pav = kardas[i].pav;
+                                        zaidInv[vieta].tipas = kardas[i].tipas;
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (invDaiktas == "skydas") {
+                                pirmas >> vieta;
+                                for (int i = 0; i < sizeof skydas / sizeof skydas[0]; i++) {
+                                    if (skydas[i].pav == "-") {
+                                        pirmas >> skydas[i].pav;
+                                        pirmas >> skydas[i].sansas;
+                                        zaidInv[vieta].pav = skydas[i].pav;
+                                        zaidInv[vieta].tipas = skydas[i].tipas;
+                                        break;
+                                    }
+                                }
+                            }
+                            else if (invDaiktas == "GYVYBES_POTION") {
+                                pirmas >> vieta;
+                                pirmas >> potion.kiekis;
+                                zaidInv[vieta].pav = potion.pav;
+                            }
+                            else if (invDaiktas == "BRANGAKMENIAI") {
+                                pirmas >> vieta;
+                                zaidInv[vieta].pav = "BRANGAKMENIAI";
+                            }
+                            else {
+                                pirmas >> vieta;
+                                zaidInv[vieta].pav = "-";
+                            }
+                        }
                         zaidimoMeniu(zemelapis, zemPlotis, zemAukstis, xZaid, yZaid, xMiest, yMiest, xKaim, yKaim, dungKord, nr, temp, temp1, kuriMisija, zaidejoPasiekimai, kiekis);
                     }
                 }

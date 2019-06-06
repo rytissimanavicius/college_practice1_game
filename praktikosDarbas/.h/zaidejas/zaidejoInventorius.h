@@ -21,7 +21,7 @@ void zaidejoInventoriusSpausdinimas(int nr) {
         if (i == 0) cout << " (GYNYBA: " << zaidDuom[nr].def << ")";
         if (i == 1) cout << " (PUOLIMAS: " << zaidDuom[nr].atk << ")";
         if (i == 2) cout << " (BLOKO SANSAS: " << zaidDuom[nr].shield << "%)";
-        if (zaidInv[i].pav == "GYVYBES POTION") cout << " (KIEKIS: " << potion.kiekis << ")";
+        if (zaidInv[i].pav == "GYVYBES_POTION") cout << " (KIEKIS: " << potion.kiekis << ")";
         if (zaidInv[i].pav == "BRANGAKMENIAI") cout << " (VERTE: " << brangakmeniai.verte << ")";
         cout << "\n";
     }
@@ -138,7 +138,7 @@ void zaidejoInventoriausFunkcijos(int nr) {
 void uzdetiSarvus(int nr, string irangosPav, int duomenys) {
     for (int i = 0; i < sizeof sarvai / sizeof sarvai[0]; i++) { //FIXME: nemanau, kad reikia atskiru funkciju uzdet pradine irangai, vistiek paskui nenaudoju
         if (sarvai[i].pav == "-") {
-            sarvai[i].pav = irangosPav + " SARVAI";
+            sarvai[i].pav = irangosPav + "_SARVAI";
             sarvai[i].gynyba = duomenys;
             zaidInv[0].pav = sarvai[i].pav;
             zaidInv[0].tipas = sarvai[i].tipas;
@@ -151,7 +151,7 @@ void uzdetiSarvus(int nr, string irangosPav, int duomenys) {
 void uzdetiKarda(int nr, string irangosPav, int duomenys) {
     for (int i = 0; i < sizeof kardas / sizeof kardas[0]; i++) {
         if (kardas[i].pav == "-") {
-            kardas[i].pav = irangosPav + " KARDAS";
+            kardas[i].pav = irangosPav + "_KARDAS";
             kardas[i].puolimas = duomenys;
             zaidInv[1].pav = kardas[i].pav;
             zaidInv[1].tipas = kardas[i].tipas;
@@ -164,7 +164,7 @@ void uzdetiKarda(int nr, string irangosPav, int duomenys) {
 void uzdetiSkyda(int nr, string irangosPav, int duomenys) {
     for (int i = 0; i < sizeof skydas / sizeof skydas[0]; i++) {
         if (skydas[i].pav == "-") {
-            skydas[i].pav = irangosPav + " SKYDAS";
+            skydas[i].pav = irangosPav + "_SKYDAS";
             skydas[i].sansas = duomenys;
             zaidInv[2].pav = skydas[i].pav;
             zaidInv[2].tipas = skydas[i].tipas;

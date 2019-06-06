@@ -175,7 +175,7 @@ void kova(int nr, bool &pralaimejoMisija, int zaidejoPasiekimai[15]) {
                     potion.kiekis -= 1;
                     if (potion.kiekis == 0) {
                         for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) {
-                            if (zaidInv[nr].pav == "GYVYBES POTION") zaidInv[nr].pav = "-";
+                            if (zaidInv[nr].pav == "GYVYBES_POTION") zaidInv[nr].pav = "-";
                         }
                     }
                     cout << "\nSEKMINGAI PANAUDOJOTE GYVYBES ELEKSYRA (+25 GYVYBES).\n";

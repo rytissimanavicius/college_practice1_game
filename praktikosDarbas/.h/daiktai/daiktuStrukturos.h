@@ -17,7 +17,7 @@ struct skydas {
     const string tipas = "skydas";
 } skydas[100];
 struct potion {       
-    string pav = "GYVYBES POTION";
+    string pav = "GYVYBES_POTION";
     int verteMieste = 150;
     int verteKaime = 100;
     int kiekis = 0;

@@ -50,12 +50,18 @@ void generuotiHtml(int kiekis) {
         zaidejuTop << "</style>" << "\n";
         zaidejuTop << "</head>" << "\n";
         zaidejuTop << "<body>" << "\n";
-        zaidejuTop << "<h1 align=\"center\" style=\"color:white\">ZAIDIMAS</h2>" << "\n";
+        zaidejuTop << "<h1 align=\"center\" style=\"color:white\">KOMPANIJA</h2>" << "\n";
         zaidejuTop << "<table style=\"width:600px\" align=\"center\">" << "\n";
+        zaidejuTop << "<tr>" << "\n";
+        zaidejuTop << "    <th>ZAIDEJAS</th>" << "\n";
+        zaidejuTop << "    <th>PATIRTIS</th>" << "\n";
+        zaidejuTop << "    <th>AUKSINIAI</th>" << "\n";
+        zaidejuTop << "</tr>" << "\n";
         for (int i = 0; i < kiekis; i++) {
-            zaidejuTop << "<td>" << topas[i].vardas << "</td>" << "\n";
-            zaidejuTop << "<td>" << topas[i].taskai << "</td>" << "\n";
-            zaidejuTop << "<td>" << topas[i].auksas << "</td>" << "\n";
+            zaidejuTop << "<tr>" << "\n";
+            zaidejuTop << "    <td>" << topas[i].vardas << "</td>" << "\n";
+            zaidejuTop << "    <td>" << topas[i].taskai << "</td>" << "\n";
+            zaidejuTop << "    <td>" << topas[i].auksas << "</td>" << "\n";
             zaidejuTop << "</tr>" << "\n";
         }
         zaidejuTop << "</table>" << "\n";

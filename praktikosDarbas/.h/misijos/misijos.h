@@ -32,7 +32,7 @@ void misija(int &kuriMisija, int xZaid, int yZaid, int xMiest, int yMiest, int x
         else if (pralaimejoMisija == true) cout << "\nPRABUDOTE APSUPTAS POROS KOMPANIJONU. VIENAS IS JU PRASNEKO, KAD JIE VIENINTELIAI ISGYVENE - KOVA TESESI IKI PASKUTINIO. JUSU SEIMA ZUVO, REIKIA STOTIS IR JUDETI TOLIAU. EINANT VIENAS IS KOMPANIJONU JUS SUSTABDE IR ITEIKE KARDA KURI NOREJO PASILIKT SAU, BET PAMATE ISGRAVIRUOTA JUSU PAVARDE (GAVOTE KALAVIJA)...\n";
         for (int i = 0; i < sizeof kardas / sizeof kardas[0]; i++) {
             if (kardas[i].pav == "-") {
-                kardas[i].pav = "PROTEVIU KARDAS";
+                kardas[i].pav = "PROTEVIU_KARDAS";
                 kardas[i].puolimas = 30;
                 for (int j = 0; j < sizeof zaidInv / sizeof zaidInv[0]; j++) {
                     if (zaidInv[j].pav == "-") {

@@ -68,7 +68,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                             }
                             else {
                                 for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) {
-                                    if (zaidInv[i].pav == "GYVYBES POTION") {
+                                    if (zaidInv[i].pav == "GYVYBES_POTION") {
                                         if (zaidejoPasiekimai[11] == 0) zaidejoPasiekimai[11] = 1;
                                         potion.kiekis += kiekis;
                                         zaidDuom[nr].gold -= (kiekis * potion.verteMieste);
@@ -133,7 +133,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                             }
                         }
                     }
-                    else if (zaidInv[vietaParduodamo - 1].pav == "GYVYBES POTION" && vietaParduodamo != 0) {
+                    else if (zaidInv[vietaParduodamo - 1].pav == "GYVYBES_POTION" && vietaParduodamo != 0) {
                         if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         while (kiekisPardavimo < 1 || kiekisPardavimo > potion.kiekis) {
                             cout << "\nKOKI KIEKI GYVYBES ELIKSYRU PARDUODATE: ";
@@ -206,7 +206,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                             }
                             else {
                                 for (int i = 0; i < sizeof zaidInv / sizeof zaidInv[0]; i++) { 
-                                    if (zaidInv[i].pav == "GYVYBES POTION") {
+                                    if (zaidInv[i].pav == "GYVYBES_POTION") {
                                         if (zaidejoPasiekimai[11] == 0) zaidejoPasiekimai[11] = 1;
                                         potion.kiekis += kiekis;
                                         zaidDuom[nr].gold -= (kiekis * potion.verteKaime);
@@ -271,7 +271,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                             }
                         }
                     }
-                    else if (zaidInv[vietaParduodamo - 1].pav == "GYVYBES POTION" && vietaParduodamo != 0) {
+                    else if (zaidInv[vietaParduodamo - 1].pav == "GYVYBES_POTION" && vietaParduodamo != 0) {
                         if (zaidejoPasiekimai[12] == 0) zaidejoPasiekimai[12] = 1;
                         while (kiekisPardavimo < 1 || kiekisPardavimo > potion.kiekis) {
                             cout << "\nKOKI KIEKI GYVYBES ELIKSYRU PARDUODATE: ";

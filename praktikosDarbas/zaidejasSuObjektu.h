@@ -47,7 +47,7 @@ void zaidejasSuObjektu(char zemelapis[30][120], int xZaid, int yZaid, int xMiest
                         cin >> rinktis1;
                         if (rinktis1 == 0) sekmingai = true;
                         if (rinktis1 == 1) {
-                            cout << "\nIVESKITE KIEKI (JUSU AUKSAS - " << zaidDuom[nr].gold << "): "; //TODO: taisyti sarvus
+                            cout << "\nIVESKITE KIEKI (JUSU AUKSAS - " << zaidDuom[nr].gold << "): ";
                             cin >> kiekis;
                             if (kiekis * 2 > zaidDuom[nr].gold) {
                                 cout << "\nNEPAKANKA AUKSO!\n";

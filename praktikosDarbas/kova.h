@@ -40,7 +40,7 @@ void sugeneruotiPriesa(int nr, int &priesoTipas) {
         priesas.duosAukso = priesas.puolimas * 2;
     }
     else if (priesoTipas == 2) {
-        //TODO: 2 yra zmogus, bet nebutina ji sukurt, patobulink kova su zombiais 
+        //TODO: 2 yra zmogus, bet tai paskui
     }
 }
 void zombisPuola(int nr, bool &kovaVyksta, int pataikymoSansas, bool &skydasPakeltas, bool &pralaimejoMisija) {

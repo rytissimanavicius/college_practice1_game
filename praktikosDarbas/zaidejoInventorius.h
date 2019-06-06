@@ -35,7 +35,7 @@ void atnaujintiZaidejoDuomenis(int nr, int duomenys, int daiktoVieta) {
 //meniu pasirinkus inventoriu, si funkcija leidzia turimus daiktus perziureti, sukeisti vietomis
 void zaidejoInventoriausFunkcijos(int nr) {
     int pasirinkimas;
-    cout << "0. GRIZTI."
+    cout << "\n0. GRIZTI."
             "\n1. SUKEISTI DAIKTUS"
             "\n\nPASIRINKITE VEIKSMA: ";
     cin >> pasirinkimas;

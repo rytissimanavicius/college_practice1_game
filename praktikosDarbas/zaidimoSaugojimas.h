@@ -18,7 +18,7 @@ void atspausdintiIssaugotus(string zaidSaug[5]) {
 void sukurtiNauja(int &nr, string zaidSaug[5]) {
     int pakeistiUzsaugota = 2;
     while (pakeistiUzsaugota == 2) {
-        cout << "\nPASIRINKITE SAUGOJIMO VIETA: "; //FIXME: arba pakeisti egzisuojancia
+        cout << "\nPASIRINKITE SAUGOJIMO VIETA: "; 
         cin >> nr; 
         while (nr < 1 || nr > 5) {
             cout << "NETEISINGAI NURODETE VIETA, PAKARTOKITE: ";
@@ -85,7 +85,7 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
             saugoti << temp;
             saugoti << " ";
             saugoti << temp1;
-            saugoti << " "; //TODO: nesaugo inventoriaus
+            saugoti << " "; 
             saugoti << kuriMisija;
             saugoti << " ";
             for (int i = 0; i < 30; i++) {
@@ -215,7 +215,7 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
             saugoti << temp;
             saugoti << " ";
             saugoti << temp1;
-            saugoti << " "; //TODO: nesaugo inventoriaus
+            saugoti << " "; 
             saugoti << kuriMisija;
             saugoti << " ";
             for (int i = 0; i < 30; i++) {
@@ -344,7 +344,7 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
             saugoti << temp;
             saugoti << " ";
             saugoti << temp1;
-            saugoti << " "; //TODO: nesaugo inventoriaus
+            saugoti << " "; 
             saugoti << kuriMisija;
             saugoti << " ";
             for (int i = 0; i < 30; i++) {
@@ -473,7 +473,7 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
             saugoti << temp;
             saugoti << " ";
             saugoti << temp1;
-            saugoti << " "; //TODO: nesaugo inventoriaus
+            saugoti << " "; 
             saugoti << kuriMisija;
             saugoti << " ";
             for (int i = 0; i < 30; i++) {
@@ -602,7 +602,7 @@ void saugojimas(int nr, char zemelapis[30][120], int zemPlotis, int zemAukstis, 
             saugoti << temp;
             saugoti << " ";
             saugoti << temp1;
-            saugoti << " "; //TODO: nesaugo inventoriaus
+            saugoti << " "; 
             saugoti << kuriMisija;
             saugoti << " ";
             for (int i = 0; i < 30; i++) {

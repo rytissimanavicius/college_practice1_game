@@ -4,6 +4,7 @@
 using namespace std;
 
 void pasiekimaiSpausdinti(int zaidejoPasiekimai[15]) {
+    cout << "\n";
     for (int i = 0; i < 15; i++) {
         if (i == 0 && zaidejoPasiekimai[i] == 1) cout << i + 1 << ". PAJUDEKITE ZEMELAPI (PASIEKTA).\n";
         else if (i == 0 && zaidejoPasiekimai[i] == 0) cout << i + 1 << ". PAJUDEKITE ZEMELAPI (NEPASIEKTA).\n";

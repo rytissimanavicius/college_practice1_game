@@ -40,7 +40,7 @@ void sukurtiNauja(int &nr, string zaidSaug[5]) {
     }
     cout << "PASIRINKITE SAUGOJIMO PAVADINIMA: ";
     cin >> zaidSaug[nr - 1]; 
-    ofstream sudetiIssaugotus("uzsaugotiZaidimai.txt"); //FIXME: 5 nesaugo?
+    ofstream sudetiIssaugotus("uzsaugotiZaidimai.txt"); //FIXME: 
     if (sudetiIssaugotus.is_open()) {
         for (int i = 0; i < 5; i++) {
             sudetiIssaugotus << zaidSaug[i];
@@ -48,7 +48,7 @@ void sukurtiNauja(int &nr, string zaidSaug[5]) {
         }
     }
     cout << "\nIVESKITE ZAIDEJO VARDA: ";
-    cin >> zaidDuom[nr].vardas;
+    cin >> zaidDuom[nr].vardas; //FIXME: 5 slot neveikia, nes nr nemazinom: - 1
     cout << "IVESKITE SUNKUMO LYGI (1/2/3): ";
     cin >> zaidDuom[nr].sunkumas;
     if (zaidDuom[nr].sunkumas < 1 && zaidDuom[nr].sunkumas > 3) {

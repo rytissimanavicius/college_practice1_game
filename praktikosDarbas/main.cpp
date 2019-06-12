@@ -14,6 +14,7 @@
 using namespace std;
 
 int main() {
+    char simbol = 'dd';
     string zaidSaug[5];
     ifstream uzsaugotiZaidimai("uzsaugotiZaidimai.txt");
     if (uzsaugotiZaidimai.is_open()) {
